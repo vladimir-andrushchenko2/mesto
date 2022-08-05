@@ -1,0 +1,20 @@
+@import url(../vendor/normalize.css);
+
+@import url(../vendor/fonts/Inter_Web/inter.css);
+
+@import url(../blocks/root/root.css);
+
+@import url(../blocks/page/page.css);
+
+@import url(../blocks/logo/logo.css);
+
+@import url(../blocks/header/header.css);
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/button/button.css);
+
+@import url(../blocks/gallery/__item/gallery__item.css);
+@import url(../blocks/gallery/__caption/gallery__caption.css);
+@import url(../blocks/gallery/__card/gallery__card.css);
+
+/* @import url(../blocks/); */
