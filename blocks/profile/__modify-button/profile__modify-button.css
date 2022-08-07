@@ -1,0 +1,9 @@
+.profile__modify-button {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+  border: 1px solid #fff;
+  position: relative;
+  display: flex;
+  margin-left: 10px;
+}

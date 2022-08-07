@@ -1,0 +1,15 @@
+.profile__title {
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 32.68px;
+  text-align: center;
+  margin: 26px auto 0;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  line-height: 32.68px;
+
+  /* to accout for profile__modify-button */
+  position: relative;
+  left: 18px;
+}
