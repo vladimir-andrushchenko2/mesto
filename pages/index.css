@@ -15,6 +15,6 @@
 
 @import url(../blocks/gallery/__item/gallery__item.css);
 @import url(../blocks/gallery/__caption/gallery__caption.css);
-@import url(../blocks/gallery/__card/gallery__card.css);
+@import url(../blocks/card/card.css);
 
 /* @import url(../blocks/); */
