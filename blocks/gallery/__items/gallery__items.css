@@ -1,4 +1,23 @@
 .gallery__items {
   list-style: none;
   padding: 0;
+  display: grid;
+  row-gap: var(--gallery-gap-size);
+  column-gap: var(--gallery-gap-size);
+  margin: auto;
+}
+
+@media screen and (min-width: 624px) {
+  .gallery__items {
+    grid-template-columns: repeat(2, var(--card-width));
+    max-width: calc(var(--medium-screen-size) - var(--gallery-gap-size) * 2);
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .gallery__items {
+    grid-template-columns: repeat(3, var(--card-width));
+    max-width: var(--large-screen-size);
+    column-gap: calc(var(--gallery-gap-size) - 3px);
+  }
 }

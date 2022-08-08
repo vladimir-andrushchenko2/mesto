@@ -3,6 +3,7 @@
   --small-screen-size: 320px;
   --medium-screen-size: 624px;
   --large-screen-size: 880px;
+  --card-width: 282px;
 }
 
 .root {
