@@ -16,6 +16,7 @@
 
 @import url(../blocks/button/button.css);
 
+@import url(../blocks/gallery/gallery.css);
 @import url(../blocks/gallery/__items/gallery__items.css);
 @import url(../blocks/gallery/__item/gallery__item.css);
 @import url(../blocks/gallery/__caption/gallery__caption.css);
