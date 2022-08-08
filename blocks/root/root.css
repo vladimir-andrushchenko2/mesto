@@ -1,9 +1,18 @@
 :root {
-  --gallery-gap-size: 20px;
   --small-screen-size: 320px;
-  --medium-screen-size: 624px;
-  --large-screen-size: 880px;
+  --gallery-gap-size: 20px;
   --card-width: 282px;
+
+  /* size for 2 cards gap and left right margin */
+  --total-medium-screen-breakpoint: calc(
+    var(--card-width) * 2 + var(--gallery-gap-size) * 3
+  );
+
+  --medium-screen-size: calc(
+    var(--total-medium-screen-breakpoint) - var(--gallery-gap-size) * 2
+  );
+
+  --large-screen-size: 880px;
 }
 
 .root {

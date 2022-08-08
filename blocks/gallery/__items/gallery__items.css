@@ -10,7 +10,6 @@
 @media screen and (min-width: 624px) {
   .gallery__items {
     grid-template-columns: repeat(2, var(--card-width));
-    max-width: calc(var(--medium-screen-size) - var(--gallery-gap-size) * 2);
   }
 }
 
