@@ -1,3 +1,13 @@
 .card__caption {
   color: black;
+  font-size: 24px;
+  font-weight: 900;
+  /* display: inline-block; */
+  line-height: 29px;
+  max-width: 219px;
+  margin: 25px 0 0 21px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
