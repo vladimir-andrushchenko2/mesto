@@ -4,6 +4,7 @@
   --card-width: 282px;
 
   /* size for 2 cards gap and left right margin */
+  /* 624px */
   --total-medium-screen-breakpoint: calc(
     var(--card-width) * 2 + var(--gallery-gap-size) * 3
   );
