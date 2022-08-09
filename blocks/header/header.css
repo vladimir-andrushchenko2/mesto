@@ -8,6 +8,7 @@
   .header {
     max-width: var(--medium-screen-size);
     padding-left: 0;
+    padding-bottom: 41px;
   }
 }
 
