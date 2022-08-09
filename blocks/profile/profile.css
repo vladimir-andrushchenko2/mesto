@@ -1,3 +1,14 @@
 .profile {
   margin-top: 42px;
 }
+
+@media screen and (min-width: 880px) {
+  .profile {
+    display: grid;
+    grid-template-columns: 120px 1fr 150px;
+    grid-template-rows: 60px 60px;
+    grid-template-areas:
+      'picture title button'
+      'picture subtitle button';
+  }
+}

@@ -1,3 +1,10 @@
 .profile__modify-symbol {
   margin: auto;
 }
+
+@media screen and (min-width: 624px) {
+  .profile__modify-symbol {
+    width: 10px;
+    height: 10px;
+  }
+}

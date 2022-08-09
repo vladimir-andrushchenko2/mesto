@@ -3,4 +3,6 @@
   width: 120px;
   display: block;
   margin: auto;
+
+  grid-area: picture;
 }

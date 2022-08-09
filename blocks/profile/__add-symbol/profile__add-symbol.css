@@ -2,3 +2,10 @@
   width: 16px;
   height: 16px;
 }
+
+@media screen and (min-width: 624px) {
+  .profile__add-symbol {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -6,6 +6,12 @@
   border: 2px solid white;
   border-radius: 2px;
   margin: 36px auto 0;
+
+  grid-area: button;
 }
 
-/* TODO: is not sized correctly */
+@media screen and (min-width: 624px) {
+  .profile__add-button {
+    max-width: 150px;
+  }
+}
