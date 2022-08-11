@@ -48,4 +48,4 @@
 @import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_title.css);
 @import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_subtitle.css);
 
-/* @import url(../blocks/); */
+@import url(../blocks/hidden/hidden.css);
