@@ -13,10 +13,10 @@
   }
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 920px) {
   .gallery__items {
     grid-template-columns: repeat(3, var(--card-width));
-    max-width: var(--large-screen-size);
+    max-width: 920px;
     column-gap: calc(var(--gallery-gap-size) - 3px);
   }
 }

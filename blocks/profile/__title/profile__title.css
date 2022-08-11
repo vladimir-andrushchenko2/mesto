@@ -24,7 +24,7 @@
   }
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 920px) {
   .profile__title {
     position: static;
     left: 0;

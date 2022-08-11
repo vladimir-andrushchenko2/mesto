@@ -2,7 +2,7 @@
   margin-top: 42px;
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 920px) {
   .profile {
     display: grid;
     grid-template-columns: 120px 1fr 150px;

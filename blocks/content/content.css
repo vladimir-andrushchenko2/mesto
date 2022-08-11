@@ -9,7 +9,7 @@
   }
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 920px) {
   .content {
     max-width: var(--large-screen-size);
   }
