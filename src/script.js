@@ -31,8 +31,13 @@ saveBtn.addEventListener('click', () => {
     const newTitle = document.querySelector('.edit-profile-form__input_type_title');
     const newSubtitle = document.querySelector('.edit-profile-form__input_type_subtitle');
 
-    title.innerText = newTitle.value;
-    subtitle.innerText = newSubtitle.value;
+    if (newTitle.value != '') {
+        title.innerText = newTitle.value;
+    }
+
+    if (newSubtitle.value != '') {
+        subtitle.innerText = newSubtitle.value;
+    }
 
     closeForm();
 });

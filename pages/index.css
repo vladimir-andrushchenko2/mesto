@@ -35,6 +35,7 @@
 @import url(../blocks/profile/__modify-symbol/profile__modify-symbol.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__add-symbol/profile__add-symbol.css);
+@import url(../blocks/profile/__title-text/profile__title-text.css);
 
 @import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/__close-btn/pop-up__close-btn.css);
