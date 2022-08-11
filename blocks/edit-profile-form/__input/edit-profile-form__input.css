@@ -1,0 +1,19 @@
+.edit-profile-form__input {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 238px;
+    margin: 30px auto 0;
+    display: block;
+    padding-bottom: 13px;
+}
+
+.edit-profile-form__input::placeholder {
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.edit-profile-form__input:nth-child(2) {
+    margin-top: 75px;
+}

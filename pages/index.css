@@ -36,6 +36,16 @@
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/profile/__add-symbol/profile__add-symbol.css);
 
-/* @import url(../blocks/); */
+@import url(../blocks/pop-up/pop-up.css);
+@import url(../blocks/pop-up/__close-btn/pop-up__close-btn.css);
+@import url(../blocks/pop-up/__container/pop-up__container.css);
+
+@import url(../blocks/edit-profile-form/edit-profile-form.css);
+@import url(../blocks/edit-profile-form/__header/edit-profile-form__header.css);
+@import url(../blocks/edit-profile-form/__input/edit-profile-form__input.css);
+@import url(../blocks/edit-profile-form/__save-button/edit-profile-form__save-button.css);
+@import url(../blocks/edit-profile-form/__input/_type/);
+@import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_title.css);
+@import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_subtitle.css);
 
 /* @import url(../blocks/); */

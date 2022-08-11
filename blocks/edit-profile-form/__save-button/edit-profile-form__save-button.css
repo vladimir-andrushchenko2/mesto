@@ -1,0 +1,14 @@
+.edit-profile-form__save-button {
+    width: 238px;
+    height: 46px;
+    margin: 45px auto 0;
+    display: block;
+    padding: 0;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
