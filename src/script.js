@@ -3,7 +3,6 @@ const editButton = document.querySelector('.profile__modify-button');
 const popUp = document.querySelector('.pop-up');
 const popUpCloseBtn = document.querySelector('.pop-up__close-btn');
 
-// const saveBtn = document.querySelector('.edit-profile-form__save-button');
 const form = document.querySelector('.edit-profile-form');
 
 const editTitle = document.querySelector('.edit-profile-form__input_type_title');
@@ -28,7 +27,7 @@ editButton.addEventListener('click', () => {
 
 popUpCloseBtn.addEventListener('click', closeForm);
 
-function formSubmitHandler(event) {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const newTitle = document.querySelector('.edit-profile-form__input_type_title');
@@ -43,6 +42,4 @@ function formSubmitHandler(event) {
   }
 
   closeForm();
-}
-
-form.addEventListener('submit', formSubmitHandler);
+});
