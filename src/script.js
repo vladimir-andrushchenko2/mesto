@@ -5,22 +5,22 @@ const popUpCloseBtn = document.querySelector('.pop-up__close-btn');
 
 const form = document.querySelector('.edit-profile-form');
 
-const editTitle = document.querySelector('.edit-profile-form__input_type_title');
-const editSubtitle = document.querySelector('.edit-profile-form__input_type_subtitle');
+const inputTitle = document.querySelector('.edit-profile-form__input_type_title');
+const inputSubtitle = document.querySelector('.edit-profile-form__input_type_subtitle');
 
 const title = document.querySelector('.profile__title-text');
 const subtitle = document.querySelector('.profile__subtitle');
 
 function closeForm() {
-  editTitle.value = '';
-  editSubtitle.value = '';
+  inputTitle.value = '';
+  inputSubtitle.value = '';
 
   popUp.classList.add('hidden');
 }
 
 editButton.addEventListener('click', () => {
-  editTitle.placeholder = document.querySelector('.profile__title').innerText;
-  editSubtitle.placeholder = document.querySelector('.profile__subtitle').innerText;
+  inputTitle.placeholder = document.querySelector('.profile__title').innerText;
+  inputSubtitle.placeholder = document.querySelector('.profile__subtitle').innerText;
 
   popUp.classList.remove('hidden');
 });
