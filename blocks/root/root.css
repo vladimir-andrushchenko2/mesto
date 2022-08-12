@@ -13,11 +13,12 @@
     var(--total-medium-screen-breakpoint) - var(--gallery-gap-size) * 2
   );
 
+  /* apply at 920px breackpoint to keep 20px margin */
   --large-screen-size: 880px;
 }
 
 .root {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   background-color: #000;
   color: #fff;
 }
