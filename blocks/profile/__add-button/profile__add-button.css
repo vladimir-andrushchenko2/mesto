@@ -6,8 +6,12 @@
   border: 2px solid white;
   border-radius: 2px;
   margin: 36px auto 0;
-
   grid-area: button;
+  transition: 0.5s;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }
 
 @media screen and (min-width: 624px) {

@@ -1,6 +1,13 @@
 .profile__add-symbol {
   width: 16px;
   height: 16px;
+  background-image: url(../../../ui-elements/add-symbol.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  margin: auto;
 }
 
 @media screen and (min-width: 624px) {

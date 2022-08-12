@@ -1,4 +1,10 @@
 .profile__modify-symbol {
+  background-image: url(../../../ui-elements/modify-symbol.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 8px;
+  height: 8px;
   margin: auto;
 }
 
