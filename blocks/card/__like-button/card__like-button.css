@@ -2,4 +2,12 @@
   position: absolute;
   left: 240px;
   top: 312px;
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../ui-elements/like-symbol.svg);
+  transition: 0.3s;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
 }
