@@ -8,11 +8,6 @@
   align-items: center;
   justify-content: center;
   line-height: 32.68px;
-
-  /* to accout for profile__modify-button */
-  position: relative;
-  left: 18px;
-
   grid-area: title;
   justify-self: start;
 }
