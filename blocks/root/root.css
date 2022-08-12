@@ -2,17 +2,14 @@
   --small-screen-size: 320px;
   --gallery-gap-size: 20px;
   --card-width: 282px;
-
   /* size for 2 cards gap and left right margin */
   /* 624px */
   --total-medium-screen-breakpoint: calc(
     var(--card-width) * 2 + var(--gallery-gap-size) * 3
   );
-
   --medium-screen-size: calc(
     var(--total-medium-screen-breakpoint) - var(--gallery-gap-size) * 2
   );
-
   /* apply at 920px breackpoint to keep 20px margin */
   --large-screen-size: 880px;
 }
