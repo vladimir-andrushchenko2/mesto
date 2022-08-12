@@ -1,6 +1,12 @@
 .pop-up__container {
-    width: 282px;
-    margin: 87px auto 0;
-    display: flex;
-    flex-direction: column;
+  width: 282px;
+  margin: 87px auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 624px) {
+  .pop-up__container {
+    width: 508px;
+  }
 }

@@ -1,8 +1,15 @@
 .edit-profile-form {
-    width: 282px;
-    height: 322px;
-    background-color: white;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
-    margin: 0 auto;
+  width: 282px;
+  height: 322px;
+  background-color: white;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 624px) {
+  .edit-profile-form {
+    width: 430px;
+    height: 330px;
+  }
 }

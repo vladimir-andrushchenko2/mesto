@@ -1,19 +1,30 @@
 .edit-profile-form__input {
-    border: none;
-    border-bottom: 1px solid black;
-    width: 238px;
-    margin: 30px auto 0;
-    display: block;
-    padding-bottom: 13px;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 238px;
+  margin: 30px auto 0;
+  display: block;
+  padding-bottom: 13px;
+  outline: none;
 }
 
 .edit-profile-form__input::placeholder {
-    color: black;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+  color: black;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .edit-profile-form__input:nth-child(2) {
-    margin-top: 75px;
+  margin-top: 75px;
+}
+
+@media screen and (min-width: 624px) {
+  .edit-profile-form__input {
+    width: 358px;
+  }
+
+  .edit-profile-form__input:nth-child(2) {
+    margin-top: 54px;
+  }
 }

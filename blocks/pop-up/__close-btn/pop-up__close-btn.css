@@ -1,9 +1,17 @@
 .pop-up__close-btn {
-    background-color: inherit;
-    border: none;
-    width: 20px;
-    height: 20px;
-    margin: 0 0 16px;
-    padding: 0;
-    align-self: flex-end;
+  background-color: inherit;
+  border: none;
+  width: 20px;
+  height: 20px;
+  margin: 0 0 16px;
+  padding: 0;
+  align-self: flex-end;
+}
+
+@media screen and (min-width: 624px) {
+  .pop-up__close-btn {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+  }
 }

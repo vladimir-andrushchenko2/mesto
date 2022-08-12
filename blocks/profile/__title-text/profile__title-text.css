@@ -1,6 +1,12 @@
 .profile__title-text {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 250px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 250px;
+}
+
+@media screen and (min-width: 624px) {
+  .profile__title-text {
+    max-width: 520px;
+  }
 }

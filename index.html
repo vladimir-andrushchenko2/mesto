@@ -2,163 +2,157 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 
 </head>
 
 <body class="root">
 
-    <div class="pop-up hidden">
-        <div class="pop-up__container">
-            <button class="pop-up__close-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 18L12 10L20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18Z" fill="white" />
+  <div class="pop-up hidden">
+    <div class="pop-up__container">
+      <button class="pop-up__close-btn">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 18L12 10L20 2L18 0L10 8L2 0L0 2L8 10L0 18L2 20L10 12L18 20L20 18Z" fill="white" />
+        </svg>
+      </button>
+
+      <div class="edit-profile-form">
+        <h2 class="edit-profile-form__header">Редактировать профиль</h2>
+        <input type="text" placeholder="Жак-Ив Кусто"
+          class="edit-profile-form__input edit-profile-form__input_type_title">
+        <input type="text" placeholder="Исследователь океана"
+          class="edit-profile-form__input edit-profile-form__input_type_subtitle">
+        <button class="edit-profile-form__save-button">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <header class="header">
+      <div class="logo"></div>
+    </header>
+
+    <main class="content">
+      <section class="profile">
+        <img class="profile__picture" src="images/profile-picture.jpg" alt="заставка профиля">
+
+        <h1 class="profile__title"><span class="profile__title-text">Жак-Ив Кусто</span>
+          <button class="button profile__modify-button">
+            <svg class="profile__modify-symbol" width="8" height="8" viewBox="0 0 8 8" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.75 1.2462L2.20283 6.82495L1.21226 5.81452L6.74528 0.25L7.75 1.2462ZM0.25 7.75L1.7217 7.30882L0.688679 6.31262L0.25 7.75Z"
+                fill="white" />
+            </svg>
+          </button>
+        </h1>
+
+        <p class="profile__subtitle">Исследователь океана</p>
+
+        <button class="button profile__add-button">
+          <svg class="profile__add-symbol" width="22" height="22" viewBox="0 0 22 22" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"
+              fill="white" />
+          </svg>
+        </button>
+      </section>
+
+      <section class="gallery">
+        <ul class="gallery__items">
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
                 </svg>
-            </button>
+              </button>
+            </article>
+          </li>
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </article>
+          </li>
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </article>
+          </li>
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </article>
+          </li>
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </article>
+          </li>
+          <li class="gallery__item">
+            <article class="card">
+              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
+              <p class="card__caption">Карачаевск</p>
+              <button class="button card__like-button">
+                <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
 
-            <div class="edit-profile-form">
-                <h2 class="edit-profile-form__header">Редактировать профиль</h2>
-                <input type="text" placeholder="Жак-Ив Кусто"
-                    class="edit-profile-form__input edit-profile-form__input_type_title">
-                <input type="text" placeholder="Исследователь океана"
-                    class="edit-profile-form__input edit-profile-form__input_type_subtitle">
-                <button class="edit-profile-form__save-button">Сохранить</button>
-            </div>
-        </div>
-    </div>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2022 Mesto Russia</p>
+    </footer>
 
-    <div class="page">
-        <header class="header">
-            <div class="logo"></div>
-        </header>
+  </div>
 
-        <main class="content">
-            <section class="profile">
-                <img class="profile__picture" src="images/profile-picture.jpg" alt="заставка профиля">
-
-                <h1 class="profile__title"><span class="profile__title-text">Жак-Ив Кусто</span>
-                    <button class="button profile__modify-button">
-                        <svg class="profile__modify-symbol" width="8" height="8" viewBox="0 0 8 8" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M7.75 1.2462L2.20283 6.82495L1.21226 5.81452L6.74528 0.25L7.75 1.2462ZM0.25 7.75L1.7217 7.30882L0.688679 6.31262L0.25 7.75Z"
-                                fill="white" />
-                        </svg>
-                    </button>
-                </h1>
-
-                <p class="profile__subtitle">Исследователь океана</p>
-
-                <button class="button profile__add-button">
-                    <svg class="profile__add-symbol" width="22" height="22" viewBox="0 0 22 22" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"
-                            fill="white" />
-                    </svg>
-                </button>
-            </section>
-
-            <section class="gallery">
-                <ul class="gallery__items">
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                    <li class="gallery__item">
-                        <article class="card">
-                            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash-1.jpg" alt="">
-                            <p class="card__caption">Карачаевск</p>
-                            <button class="button card__like-button">
-                                <svg width="22" height="19" viewBox="0 0 22 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"
-                                        fill="black" />
-                                </svg>
-                            </button>
-                        </article>
-                    </li>
-                </ul>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p class="footer__text">&copy; 2022 Mesto Russia</p>
-        </footer>
-
-    </div>
-
-    <script src="src/script.js"></script>
+  <script src="src/script.js"></script>
 </body>
 
 </html>
