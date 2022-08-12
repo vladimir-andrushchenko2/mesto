@@ -15,14 +15,14 @@ function closeForm() {
   inputTitle.value = '';
   inputSubtitle.value = '';
 
-  popUp.classList.add('hidden');
+  popUp.classList.remove('pop-up_opened');
 }
 
 editButton.addEventListener('click', () => {
   inputTitle.placeholder = document.querySelector('.profile__title').innerText;
   inputSubtitle.placeholder = document.querySelector('.profile__subtitle').innerText;
 
-  popUp.classList.remove('hidden');
+  popUp.classList.add('pop-up_opened');
 });
 
 popUpCloseBtn.addEventListener('click', closeForm);
