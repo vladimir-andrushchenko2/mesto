@@ -18,28 +18,30 @@ function closeForm() {
   popUp.classList.remove('pop-up_opened');
 }
 
-editButton.addEventListener('click', () => {
-  inputTitle.placeholder = document.querySelector('.profile__title').innerText;
-  inputSubtitle.placeholder = document.querySelector('.profile__subtitle').innerText;
+function openPopUp() {
+  inputTitle.value = title.textContent;
+  inputSubtitle.value = subtitle.textContent;
 
   popUp.classList.add('pop-up_opened');
-});
+}
 
-popUpCloseBtn.addEventListener('click', closeForm);
-
-form.addEventListener('submit', (event) => {
+function formSubmitHandler(event) {
   event.preventDefault();
 
-  const newTitle = document.querySelector('.edit-profile-form__input_type_title');
-  const newSubtitle = document.querySelector('.edit-profile-form__input_type_subtitle');
 
   if (newTitle.value != '') {
-    title.innerText = newTitle.value;
+    title.textContent = inputTitle.value;
   }
 
   if (newSubtitle.value != '') {
-    subtitle.innerText = newSubtitle.value;
+    subtitle.textContent = inputSubtitle.value;
   }
 
   closeForm();
-});
+}
+
+editButton.addEventListener('click', openPopUp);
+
+popUpCloseBtn.addEventListener('click', closeForm);
+
+form.addEventListener('submit', formSubmitHandler);
