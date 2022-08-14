@@ -16,11 +16,11 @@
     <button class="pop-up__close-btn"></button>
 
     <div class="pop-up__container">
-      <form action="/" method="get" class="edit-profile-form">
+      <form name="edit-profile-form" action="/" method="get" class="edit-profile-form">
         <h2 class="edit-profile-form__header">Редактировать профиль</h2>
-        <input type="text" placeholder="Жак-Ив Кусто"
+        <input name="edit-profile-form__input_type_title" type="text" placeholder="Жак-Ив Кусто"
           class="edit-profile-form__input edit-profile-form__input_type_title">
-        <input type="text" placeholder="Исследователь океана"
+        <input name="edit-profile-form__input_type_subtitle" type="text" placeholder="Исследователь океана"
           class="edit-profile-form__input edit-profile-form__input_type_subtitle">
         <input type="submit" class="edit-profile-form__save-button" value="Сохранить">
       </form>
@@ -46,64 +46,52 @@
         <button class="button profile__add-button"></button>
       </section>
 
-      <div class="gallery">
+      <section class="gallery">
         <ul class="gallery__items">
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Карачаевск</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
+            <div class="card__info">
+              <h2 class="card__caption">Карачаевск</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Гора Эльбрус</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Холмы">
+            <div class="card__info">
+              <h2 class="card__caption">Гора Эльбрус</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Домбай</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Горы">
+            <div class="card__info">
+              <h2 class="card__caption">Домбай</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Карачаево-Часовня</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
+            <div class="card__info">
+              <h2 class="card__caption">Карачаево-Часовня</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Гора Эльбрус</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Холмы">
+            <div class="card__info">
+              <h2 class="card__caption">Гора Эльбрус</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
-          <li class="gallery__item">
-            <article class="card">
-              <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="">
-              <div class="card__info">
-                <h2 class="card__caption">Домбай</h2>
-                <button class="button card__like-button"></button>
-              </div>
-            </article>
+          <li class="gallery__item card">
+            <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Горы">
+            <div class="card__info">
+              <h2 class="card__caption">Домбай</h2>
+              <button class="button card__like-button"></button>
+            </div>
           </li>
         </ul>
-      </div>
+      </section>
     </main>
 
     <footer class="footer">
