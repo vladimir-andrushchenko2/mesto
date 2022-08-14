@@ -1,6 +1,6 @@
 .edit-profile-form__input {
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 238px;
   margin: 30px auto 0;
   display: block;
