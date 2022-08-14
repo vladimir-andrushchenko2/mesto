@@ -20,8 +20,6 @@
 
 @media screen and (min-width: 920px) {
   .profile__title {
-    position: static;
-    left: 0;
     margin-left: 30px;
   }
 }
