@@ -2,16 +2,10 @@
 
 ### Обзор
 
-* Figma
-* Картинки
+Проект представляет собой информацию об авторе а так же галерею его фото.
+В прокте использованы технологии grid, flexbox, javascript.
 
-**Figma**
+- [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+Ссылкa на GitHub Pages.
+https://vladimir-andrushchenko2.github.io/mesto/
