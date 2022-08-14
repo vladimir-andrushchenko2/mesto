@@ -12,6 +12,8 @@
   );
   /* apply at 920px breackpoint to keep 20px margin */
   --large-screen-size: 880px;
+  --pop-up-container-s: 282px;
+  --pop-up-container-l: 430px;
 }
 
 .root {

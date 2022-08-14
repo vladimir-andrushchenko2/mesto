@@ -3,7 +3,7 @@
   border: none;
   width: 20px;
   height: 20px;
-  margin: 87px calc((100vw - 282px) / 2) 16px auto;
+  margin: 0 calc((100vw - var(--pop-up-container-s)) / 2) 16px auto;
   padding: 0;
   align-self: flex-end;
   background-image: url(../../../ui-elements/close-symbol.svg);
@@ -22,6 +22,6 @@
     width: 32px;
     height: 32px;
     background-size: 32px;
-    margin: 155px calc(((100vw - 430px) / 2) - 40px) 8px auto;
+    margin: 0 calc(((100vw - var(--pop-up-container-l)) / 2) - 40px) 8px auto;
   }
 }
