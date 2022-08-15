@@ -20,7 +20,6 @@
 @import url(../blocks/gallery/gallery.css);
 @import url(../blocks/gallery/__items/gallery__items.css);
 @import url(../blocks/gallery/__item/gallery__item.css);
-@import url(../blocks/gallery/__caption/gallery__caption.css);
 
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__picture/card__picture.css);
@@ -45,8 +44,5 @@
 @import url(../blocks/edit-profile-form/__header/edit-profile-form__header.css);
 @import url(../blocks/edit-profile-form/__input/edit-profile-form__input.css);
 @import url(../blocks/edit-profile-form/__save-button/edit-profile-form__save-button.css);
-@import url(../blocks/edit-profile-form/__input/_type/);
 @import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_title.css);
 @import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_subtitle.css);
-
-@import url(../blocks/hidden/hidden.css);
