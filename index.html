@@ -47,50 +47,7 @@
       </section>
 
       <section class="gallery">
-        <ul class="gallery__items">
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
-            <div class="card__info">
-              <h2 class="card__caption">Карачаевск</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Холмы">
-            <div class="card__info">
-              <h2 class="card__caption">Гора Эльбрус</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Горы">
-            <div class="card__info">
-              <h2 class="card__caption">Домбай</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
-            <div class="card__info">
-              <h2 class="card__caption">Карачаево-Часовня</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1404681-unsplash.jpg" alt="Холмы">
-            <div class="card__info">
-              <h2 class="card__caption">Гора Эльбрус</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-          <li class="gallery__item card">
-            <img class="card__picture" src="images/kirill-pershin-1556355-unsplash.jpg" alt="Горы">
-            <div class="card__info">
-              <h2 class="card__caption">Домбай</h2>
-              <button type="button" class="button card__like-button"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="gallery__items"></ul>
       </section>
     </main>
 
@@ -99,6 +56,16 @@
     </footer>
 
   </div>
+
+  <template id="card">
+    <li class="gallery__item card">
+      <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
+      <div class="card__info">
+        <h2 class="card__caption">Карачаевск</h2>
+        <button type="button" class="button card__like-button"></button>
+      </div>
+    </li>
+  </template>
 
   <script src="src/script.js"></script>
 </body>

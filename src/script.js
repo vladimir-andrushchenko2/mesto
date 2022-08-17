@@ -38,6 +38,24 @@ const inputSubtitle = document.querySelector('.edit-profile-form__input_type_sub
 const title = document.querySelector('.profile__title-text');
 const subtitle = document.querySelector('.profile__subtitle');
 
+function makeCardNode({ name, link }) {
+  const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
+  newNode.querySelector('.card__picture').src = link;
+  newNode.querySelector('.card__caption').textContent = name;
+  return newNode;
+}
+
+function makeGalleryInserter(galleryContainer) {
+  return function (node) {
+    galleryContainer.prepend(node);
+  }
+}
+
+function insertInitialCardsToGallery() {
+  const insertIntoGallery = makeGalleryInserter(document.querySelector('.gallery__items'));
+  initialCards.map(makeCardNode).forEach(insertIntoGallery);
+};
+
 function closeForm() {
   inputTitle.value = '';
   inputSubtitle.value = '';
@@ -72,3 +90,5 @@ editButton.addEventListener('click', openPopUp);
 popUpCloseBtn.addEventListener('click', closeForm);
 
 form.addEventListener('submit', formSubmitHandler);
+
+insertInitialCardsToGallery();
