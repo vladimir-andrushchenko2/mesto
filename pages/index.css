@@ -40,9 +40,9 @@
 @import url(../blocks/pop-up/__close-btn/pop-up__close-btn.css);
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 
-@import url(../blocks/edit-profile-form/edit-profile-form.css);
-@import url(../blocks/edit-profile-form/__header/edit-profile-form__header.css);
-@import url(../blocks/edit-profile-form/__input/edit-profile-form__input.css);
-@import url(../blocks/edit-profile-form/__save-button/edit-profile-form__save-button.css);
-@import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_title.css);
-@import url(../blocks/edit-profile-form/__input/_type/edit-profile-form__input_type_subtitle.css);
+@import url(../blocks/pop-up/__header/pop-up__header.css);
+@import url(../blocks/pop-up/__input/pop-up__input.css);
+@import url(../blocks/pop-up/__save-button/pop-up__save-button.css);
+@import url(../blocks/pop-up/__input/_type/pop-up__input_type_title.css);
+@import url(../blocks/pop-up/__input/_type/pop-up__input_type_subtitle.css);
+@import url(../blocks/pop-up/__input/_error/pop-up__input_error.css);

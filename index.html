@@ -12,20 +12,31 @@
 
 <body class="root">
 
-  <div class="pop-up">
+  <div class="pop-up pop-up_profile">
     <button type="button" class="pop-up__close-btn"></button>
-
     <div class="pop-up__container">
-      <form name="edit-profile-form" action="/" method="get" class="edit-profile-form">
-        <h2 class="edit-profile-form__header">Редактировать профиль</h2>
-        <input type="text" name="edit-profile-form__input_type_title"
-          class="edit-profile-form__input edit-profile-form__input_type_title">
-        <input type="text" name="edit-profile-form__input_type_subtitle"
-          class="edit-profile-form__input edit-profile-form__input_type_subtitle">
-        <input type="submit" class="edit-profile-form__save-button" value="Сохранить">
+      <form name="profile-form" action="/" method="get" class="pop-up__form">
+        <h2 class="pop-up__header">Редактировать профиль</h2>
+        <input type="text" name="pop-up__input_type_title" class="pop-up__input pop-up__input_type_title">
+        <input type="text" name="pop-up__input_type_subtitle" class="pop-up__input pop-up__input_type_subtitle">
+        <input type="submit" class="pop-up__save-button" value="Сохранить">
       </form>
     </div>
   </div>
+  <!-- 
+  <div class="pop-up pop-up_gallery-add">
+    <button type="button" class="pop-up__close-btn"></button>
+    <div class="pop-up__container">
+      <form name="gallery-add-form" action="/" method="get" class="pop-up__form">
+        <h2 class="pop-up__header">Новое место</h2>
+        <input type="text" name="pop-up__input_type_name" class="pop-up__input pop-up__input_type_name"
+          placeholder="Название">
+        <input type="text" name="pop-up__input_type_picture-source"
+          class="pop-up__input pop-up__input_type_picture-source" placeholder="Ссылка на картинку">
+        <input type="submit" class="pop-up__save-button" value="Сохранить">
+      </form>
+    </div>
+  </div> -->
 
   <div class="page">
     <header class="header">
@@ -59,9 +70,9 @@
 
   <template id="card">
     <li class="gallery__item card">
-      <img class="card__picture" src="images/kirill-pershin-1088404-unsplash.jpg" alt="Церковь">
+      <img class="card__picture" src="" alt="Церковь">
       <div class="card__info">
-        <h2 class="card__caption">Карачаевск</h2>
+        <h2 class="card__caption"></h2>
         <button type="button" class="button card__like-button"></button>
       </div>
     </li>

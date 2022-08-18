@@ -1,4 +1,4 @@
-.edit-profile-form__input {
+.pop-up__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 238px;
@@ -8,23 +8,23 @@
   outline: none;
 }
 
-.edit-profile-form__input::placeholder {
-  color: black;
+.pop-up__input::placeholder {
+  color: #c4c4c4;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 }
 
-.edit-profile-form__input:nth-child(2) {
+.pop-up__input:nth-child(2) {
   margin-top: 75px;
 }
 
 @media screen and (min-width: 624px) {
-  .edit-profile-form__input {
+  .pop-up__input {
     width: 358px;
   }
 
-  .edit-profile-form__input:nth-child(2) {
+  .pop-up__input:nth-child(2) {
     margin-top: 54px;
   }
 }

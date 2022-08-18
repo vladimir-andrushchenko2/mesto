@@ -1,4 +1,4 @@
-.edit-profile-form__header {
+.pop-up__header {
   color: black;
   font-size: 18px;
   font-weight: 900;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (min-width: 624px) {
-  .edit-profile-form__header {
+  .pop-up__header {
     text-align: left;
     margin: 34px 0 0 36px;
     font-size: 24px;

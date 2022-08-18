@@ -1,4 +1,4 @@
-.edit-profile-form__save-button {
+.pop-up__save-button {
   width: 238px;
   height: 46px;
   margin: 45px auto 25px;
@@ -14,12 +14,12 @@
   transition: 0.3s;
 }
 
-.edit-profile-form__save-button:hover {
+.pop-up__save-button:hover {
   opacity: 0.8;
 }
 
 @media screen and (min-width: 624px) {
-  .edit-profile-form__save-button {
+  .pop-up__save-button {
     width: 358px;
     height: 50px;
     font-size: 18px;
