@@ -30,7 +30,7 @@ const editButton = document.querySelector('.profile__modify-button');
 const popUp = document.querySelector('.pop-up');
 const popUpCloseBtn = document.querySelector('.pop-up__close-btn');
 
-const form = document.querySelector('.edit-profile-form');
+const formProfile = document.querySelector('.pop-up__form_profile');
 
 const inputTitle = document.querySelector('.edit-profile-form__input_type_title');
 const inputSubtitle = document.querySelector('.edit-profile-form__input_type_subtitle');
@@ -51,7 +51,7 @@ function makeGalleryInserter(galleryContainer) {
   }
 }
 
-function insertInitialCardsToGallery() {
+function loadCardsToGallery() {
   const insertIntoGallery = makeGalleryInserter(document.querySelector('.gallery__items'));
   initialCards.map(makeCardNode).forEach(insertIntoGallery);
 };
@@ -89,6 +89,6 @@ editButton.addEventListener('click', openPopUp);
 
 popUpCloseBtn.addEventListener('click', closeForm);
 
-form.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', formSubmitHandler);
 
-insertInitialCardsToGallery();
+loadCardsToGallery();
