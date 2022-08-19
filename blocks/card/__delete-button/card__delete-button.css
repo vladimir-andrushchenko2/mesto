@@ -6,4 +6,9 @@
   position: absolute;
   top: 0;
   right: 0;
+  transition: 0.3s;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
 }
