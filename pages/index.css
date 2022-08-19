@@ -22,6 +22,7 @@
 @import url(../blocks/gallery/__item/gallery__item.css);
 
 @import url(../blocks/card/card.css);
+@import url(../blocks/card/__delete-button/card__delete-button.css);
 @import url(../blocks/card/__picture/card__picture.css);
 @import url(../blocks/card/__caption/card__caption.css);
 @import url(../blocks/card/__info/card__info.css);
