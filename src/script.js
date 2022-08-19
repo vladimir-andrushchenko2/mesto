@@ -25,26 +25,6 @@ const initialCards = [
   }
 ];
 
-const popUpGalleryAdd = document.querySelector('.pop-up_gallery-add');
-
-function makeCardNode({ name, link }) {
-  const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
-  newNode.querySelector('.card__picture').src = link;
-  newNode.querySelector('.card__caption').textContent = name;
-  return newNode;
-}
-
-function makeGalleryInserter(galleryContainer) {
-  return function (node) {
-    galleryContainer.prepend(node);
-  }
-}
-
-function loadCardsToGallery() {
-  const insertIntoGallery = makeGalleryInserter(document.querySelector('.gallery__items'));
-  initialCards.map(makeCardNode).forEach(insertIntoGallery);
-};
-
 function getInputs(popUp) {
   return Array.from(popUp.querySelectorAll('.pop-up__input'));
 }
@@ -109,30 +89,79 @@ function initProfilePopUp() {
   const inputTitle = popUp.querySelector('.pop-up__input_type_title');
   const inputSubtitle = popUp.querySelector('.pop-up__input_type_subtitle');
 
-  function openProfilePopUp() {
+  function openPopUp() {
     inputTitle.value = title.textContent;
     inputSubtitle.value = subtitle.textContent;
 
     show(popUp);
   }
 
-  const closeProfilePopUp = getCloseCallback(popUp);
+  const closePopUp = getCloseCallback(popUp);
 
   function setInputsAndClose() {
     title.textContent = inputTitle.value;
     subtitle.textContent = inputSubtitle.value;
 
-    closeProfilePopUp();
+    closePopUp();
   }
 
-  document.querySelector('.profile__modify-button').addEventListener('click', openProfilePopUp);
+  document.querySelector('.profile__modify-button').addEventListener('click', openPopUp);
 
-  getCloseButton(popUp).addEventListener('click', closeProfilePopUp);
+  getCloseButton(popUp).addEventListener('click', closePopUp);
 
   getForm(popUp).addEventListener('submit', submitHandler(setInputsAndClose, popUp));
 
   getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
 
+function initGallery() {
+  const popUp = document.querySelector('.pop-up_gallery-add');
+
+  const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
+  const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
+
+  function makeCardNode({ name, link }) {
+    const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
+    newNode.querySelector('.card__picture').src = link;
+    newNode.querySelector('.card__caption').textContent = name;
+    return newNode;
+  }
+
+  function makeGalleryInserter(galleryContainer) {
+    return function (node) {
+      galleryContainer.prepend(node);
+    }
+  }
+
+  const insertIntoGallery = makeGalleryInserter(document.querySelector('.gallery__items'));
+
+  function loadCardsToGallery() {
+    initialCards.map(makeCardNode).forEach(insertIntoGallery);
+  };
+
+  function openPopUp() {
+    show(popUp);
+  }
+
+  const closePopUp = getCloseCallback(popUp);
+
+  function addCard() {
+    insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }));
+
+    closePopUp();
+  }
+
+  // Fill gallery with cards from server or elsewhere
+  loadCardsToGallery();
+
+  document.querySelector('.profile__add-button').addEventListener('click', openPopUp);
+
+  getCloseButton(popUp).addEventListener('click', closePopUp);
+
+  getForm(popUp).addEventListener('submit', submitHandler(addCard, popUp));
+
+  getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
+}
+
 initProfilePopUp();
-loadCardsToGallery();
+initGallery();
