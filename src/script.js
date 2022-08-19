@@ -123,6 +123,7 @@ function initGallery() {
   function makeCardNode({ name, link }) {
     const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
     newNode.querySelector('.card__picture').src = link;
+    newNode.querySelector('.card__picture').alt = name;
     newNode.querySelector('.card__caption').textContent = name;
     return newNode;
   }
