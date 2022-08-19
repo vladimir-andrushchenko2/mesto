@@ -65,7 +65,7 @@ function getForm(popUp) {
   return popUp.querySelector('.pop-up__form');
 }
 
-function setProfilePopUpFacade() {
+function initProfilePopUp() {
   const popUp = document.querySelector('.pop-up_profile');
   const title = document.querySelector('.profile__title-text');
   const subtitle = document.querySelector('.profile__subtitle');
@@ -107,5 +107,5 @@ function setProfilePopUpFacade() {
   getForm(popUp).addEventListener('submit', editProfile);
 }
 
-setProfilePopUpFacade();
+initProfilePopUp();
 loadCardsToGallery();
