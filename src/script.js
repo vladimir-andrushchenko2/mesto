@@ -120,11 +120,17 @@ function initGallery() {
   const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
   const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
 
+  function likeHandler(event) {
+    event.stopPropagation();
+    event.target.classList.toggle('card__like-button_active');
+  }
+
   function makeCardNode({ name, link }) {
     const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
     newNode.querySelector('.card__picture').src = link;
     newNode.querySelector('.card__picture').alt = name;
     newNode.querySelector('.card__caption').textContent = name;
+    newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
     return newNode;
   }
 

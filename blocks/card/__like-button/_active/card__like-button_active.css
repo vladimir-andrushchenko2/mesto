@@ -1,0 +1,7 @@
+.card__like-button_active {
+  background-image: url(../../../../ui-elements/like-symbol-active.svg);
+}
+
+.card__like-button_active:hover {
+  opacity: 1;
+}
