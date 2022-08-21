@@ -1,7 +1,4 @@
 .pop-up_opened {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   visibility: visible;
   opacity: 1;
 }
