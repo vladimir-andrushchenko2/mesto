@@ -67,7 +67,7 @@ function removeMarkEmptyAsError(event) {
   event.target.classList.remove('pop-up__input_error');
 }
 
-function submitHandler(action, popUp) {
+function submitMiddleware(action, popUp) {
   return function (event) {
     event.preventDefault();
 
@@ -98,7 +98,7 @@ function initProfilePopUp() {
 
   const closePopUp = getCloseCallback(popUp);
 
-  function setInputsAndClose() {
+  function onSubmit() {
     title.textContent = inputTitle.value;
     subtitle.textContent = inputSubtitle.value;
 
@@ -109,7 +109,7 @@ function initProfilePopUp() {
 
   getCloseButton(popUp).addEventListener('click', closePopUp);
 
-  getForm(popUp).addEventListener('submit', submitHandler(setInputsAndClose, popUp));
+  getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
   getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
@@ -152,7 +152,7 @@ function initGallery() {
 
   const closePopUp = getCloseCallback(popUp);
 
-  function addCard() {
+  function onSubmit() {
     insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }));
 
     closePopUp();
@@ -165,7 +165,7 @@ function initGallery() {
 
   getCloseButton(popUp).addEventListener('click', closePopUp);
 
-  getForm(popUp).addEventListener('submit', submitHandler(addCard, popUp));
+  getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
   getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
