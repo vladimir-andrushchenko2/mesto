@@ -183,18 +183,18 @@ function makeCardNode({ name, link }) {
   return newNode;
 }
 
+const insertIntoGallery = frontInserter(document.querySelector('.gallery__items'));
+
+function loadCardsToGallery() {
+  initialCards.map(makeCardNode).forEach(insertIntoGallery);
+};
+
 function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_gallery-add');
   const openButton = document.querySelector('.profile__add-button');
 
   const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
   const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
-
-  const insertIntoGallery = frontInserter(document.querySelector('.gallery__items'));
-
-  function loadCardsToGallery() {
-    initialCards.map(makeCardNode).forEach(insertIntoGallery);
-  };
 
   function onClose() {
     clearInputs(popUp);
@@ -212,9 +212,8 @@ function initGalleryAddPopUp() {
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
-
-  loadCardsToGallery();
 }
 
 initProfilePopUp();
 initGalleryAddPopUp();
+loadCardsToGallery();
