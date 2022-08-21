@@ -37,13 +37,6 @@ function clearInputs(popUp) {
   getInputs(popUp).forEach(input => input.value = '');
 }
 
-// function getClearInputsAndCloseCallback(popUp) {
-//   return function () {
-//     clearInputs(popUp);
-//     hide(popUp);
-//   }
-// }
-
 function frontInserter(container) {
   return function (node) {
     container.prepend(node);
