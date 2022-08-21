@@ -119,12 +119,11 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose) {
 }
 
 function initProfilePopUp() {
+  const popUp = document.querySelector('.pop-up_profile');
   const openButton = document.querySelector('.profile__modify-button');
 
   const title = document.querySelector('.profile__title-text');
   const subtitle = document.querySelector('.profile__subtitle');
-
-  const popUp = document.querySelector('.pop-up_profile');
 
   const inputTitle = popUp.querySelector('.pop-up__input_type_title');
   const inputSubtitle = popUp.querySelector('.pop-up__input_type_subtitle');
@@ -150,15 +149,23 @@ function initProfilePopUp() {
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
 }
 
-// function initGalleryCard() {
-//   const popUp = document.querySelector('.pop-up_show-card');
+function initGalleryCardPictureViewPopUp(openButton, name, link) {
+  const popUp = document.querySelector('.pop-up_show-card');
 
+  function onOpen() {
+    popUp.querySelector('.pop-up__image').src = link;
+    popUp.querySelector('.pop-up__image-caption').textContent = name;
+  }
 
-// }
+  function onClose() {
+    doNothing();
+  }
 
-function initGallery() {
+  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
+}
+
+function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_gallery-add');
-
   const openButton = document.querySelector('.profile__add-button');
 
   const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
@@ -169,16 +176,14 @@ function initGallery() {
     event.target.classList.toggle('card__like-button_active');
   }
 
-  // function imagePopUpHanler(event) {
-
-  // }
-
   function makeCardNode({ name, link }) {
     const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
-    newNode.querySelector('.card__picture').src = link;
-    newNode.querySelector('.card__picture').alt = name;
+    const picture = newNode.querySelector('.card__picture');
+    picture.src = link;
+    picture.alt = name;
     newNode.querySelector('.card__caption').textContent = name;
     newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
+    initGalleryCardPictureViewPopUp(picture, name, link);
     return newNode;
   }
 
@@ -209,4 +214,4 @@ function initGallery() {
 }
 
 initProfilePopUp();
-initGallery();
+initGalleryAddPopUp();
