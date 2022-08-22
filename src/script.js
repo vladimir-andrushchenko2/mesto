@@ -1,46 +1,19 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-function getInputs(popUp) {
-  return Array.from(popUp.querySelectorAll('.pop-up__input'));
-}
-
-function hide(popUp) {
-  popUp.classList.remove('pop-up_opened');
-}
-
-function clearInputs(popUp) {
-  getInputs(popUp).forEach(input => input.value = '');
-}
-
-function frontInserter(container) {
+function makeFrontInserter(container) {
   return function (node) {
     container.prepend(node);
   }
+}
+
+function hidePopUp(popUp) {
+  popUp.classList.remove('pop-up_opened');
+}
+
+function showPopUp(popUp) {
+  popUp.classList.add('pop-up_opened');
+}
+
+function getInputs(popUp) {
+  return Array.from(popUp.querySelectorAll('.pop-up__input'));
 }
 
 function getSubmitButton(popUp) {
@@ -53,10 +26,6 @@ function getCloseButton(popUp) {
 
 function getForm(popUp) {
   return popUp.querySelector('.pop-up__form');
-}
-
-function show(popUp) {
-  popUp.classList.add('pop-up_opened');
 }
 
 function isInputValueEmpty(input) {
@@ -84,23 +53,19 @@ function submitMiddleware(action, popUp) {
 
     action();
 
-    hide(popUp);
+    hidePopUp(popUp);
   }
 }
 
-function doNothing() {
-  return;
-}
-
-function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose) {
+function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => { }) {
   function openPopUp() {
     onOpen();
-    show(popUp);
+    showPopUp(popUp);
   }
 
   function closePopUp() {
     onClose();
-    hide(popUp);
+    hidePopUp(popUp);
   }
 
   getCloseButton(popUp).addEventListener('click', closePopUp);
@@ -126,20 +91,16 @@ function initProfilePopUp() {
     inputSubtitle.value = subtitle.textContent;
   }
 
-  function onClose() {
-    doNothing();
-  }
-
   function onSubmit() {
     title.textContent = inputTitle.value;
     subtitle.textContent = inputSubtitle.value;
 
-    clearInputs(popUp);
+    getForm(popUp).reset();
   }
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
+  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
 function initGalleryCardPictureViewPopUp(openButton, name, link) {
@@ -150,16 +111,11 @@ function initGalleryCardPictureViewPopUp(openButton, name, link) {
     popUp.querySelector('.pop-up__image-caption').textContent = name;
   }
 
-  function onClose() {
-    doNothing();
-  }
-
-  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
+  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
 function makeCardNode({ name, link }) {
   function likeHandler(event) {
-    event.stopPropagation();
     event.target.classList.toggle('card__like-button_active');
   }
 
@@ -183,7 +139,7 @@ function makeCardNode({ name, link }) {
   return newNode;
 }
 
-const insertIntoGallery = frontInserter(document.querySelector('.gallery__items'));
+const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
 
 function loadCardsToGallery() {
   initialCards.map(makeCardNode).forEach(insertIntoGallery);
@@ -197,21 +153,17 @@ function initGalleryAddPopUp() {
   const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
 
   function onClose() {
-    clearInputs(popUp);
+    getForm(popUp).reset();
   }
 
   function onSubmit() {
     insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }));
-    clearInputs(popUp);
-  }
-
-  function onOpen() {
-    doNothing();
+    getForm(popUp).reset();
   }
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose);
+  setOpeningAndClosingOfPopUp(popUp, openButton, () => { }, onClose);
 }
 
 initProfilePopUp();
