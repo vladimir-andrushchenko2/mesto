@@ -12,19 +12,21 @@
 
 <body class="root">
 
-  <div class="pop-up pop-up_profile">
+  <div class="pop-up pop-up_type_profile">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
       <form name="profile-form" action="/" method="get" class="pop-up__form">
         <h2 class="pop-up__header">Редактировать профиль</h2>
-        <input type="text" name="pop-up__input_type_title" class="pop-up__input pop-up__input_type_title">
-        <input type="text" name="pop-up__input_type_subtitle" class="pop-up__input pop-up__input_type_subtitle">
+        <input type="text" name="pop-up__input_type_title" class="pop-up__input pop-up__input_type_title"
+          placeholder="Ваше имя">
+        <input type="text" name="pop-up__input_type_subtitle" class="pop-up__input pop-up__input_type_subtitle"
+          placeholder="О Вас">
         <input type="submit" class="pop-up__save-button" value="Сохранить">
       </form>
     </div>
   </div>
 
-  <div class="pop-up pop-up_gallery-add">
+  <div class="pop-up pop-up_type_gallery-add">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
       <form name="gallery-add-form" action="/" method="get" class="pop-up__form">
@@ -38,7 +40,7 @@
     </div>
   </div>
 
-  <div class="pop-up pop-up_show-card pop-up_darker-background">
+  <div class="pop-up pop-up_type_show-card pop-up_darker-background">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
       <img class="pop-up__image"
@@ -82,7 +84,7 @@
       <img class="card__picture"
         src="https://images.unsplash.com/photo-1660999552523-aee403e77ad8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyOXx8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
         alt="default image">
-      <button class="button card__delete-button"></button>
+      <button type="button" class="button card__delete-button"></button>
       <div class="card__info">
         <h2 class="card__caption"></h2>
         <button type="button" class="button card__like-button"></button>
