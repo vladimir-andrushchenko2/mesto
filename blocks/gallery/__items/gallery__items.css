@@ -4,6 +4,7 @@
   display: grid;
   row-gap: var(--gallery-gap-size);
   column-gap: var(--gallery-gap-size);
+  grid-auto-rows: 361px;
   margin: auto;
 }
 
