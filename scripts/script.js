@@ -32,24 +32,24 @@ function isInputValueEmpty(input) {
   return input.value === '' ? true : false;
 }
 
-function markEmptyAsError(inputs) {
-  inputs
-    .filter(isInputValueEmpty)
-    .forEach(input => input.classList.add('pop-up__input_error'));
-}
+// function markEmptyAsError(inputs) {
+//   inputs
+//     .filter(isInputValueEmpty)
+//     .forEach(input => input.classList.add('pop-up__input_error'));
+// }
 
-function removeMarkEmptyAsError(event) {
-  event.target.classList.remove('pop-up__input_error');
-}
+// function removeMarkEmptyAsError(event) {
+//   event.target.classList.remove('pop-up__input_error');
+// }
 
 function submitMiddleware(action, popUp) {
   return function (event) {
     event.preventDefault();
 
-    if (getInputs(popUp).some(isInputValueEmpty)) {
-      markEmptyAsError(getInputs(popUp));
-      return;
-    }
+    // if (getInputs(popUp).some(isInputValueEmpty)) {
+    //   markEmptyAsError(getInputs(popUp));
+    //   return;
+    // }
 
     action();
 
@@ -73,7 +73,7 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   openButton.addEventListener('click', openPopUp);
 
   // other logic
-  getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
+  // getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
 
 function makeCardNode({ name, link }) {
