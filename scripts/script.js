@@ -1,3 +1,4 @@
+// ============================= Utilities
 function makeFrontInserter(container) {
   return function (node) {
     container.prepend(node);
@@ -32,24 +33,63 @@ function isInputValueEmpty(input) {
   return input.value === '' ? true : false;
 }
 
-// function markEmptyAsError(inputs) {
-//   inputs
-//     .filter(isInputValueEmpty)
-//     .forEach(input => input.classList.add('pop-up__input_error'));
-// }
+// ============================= Validation logic
+function showInputError(formElement, inputElement, errorMessage) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('pop-up__input_type_error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('pop-up__input-error_active');
+}
 
-// function removeMarkEmptyAsError(event) {
-//   event.target.classList.remove('pop-up__input_error');
-// }
+function hideInputError(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('pop-up__input_type_error');
+  errorElement.textContent = '';
+  errorElement.classList.remove('pop-up__input-error_active');
+}
 
+function checkInputValidity(formElement, inputElement) {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+function hasInvalidInput(inputList) {
+  return inputList.some(input => !input.validity.valid);
+}
+
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('button_inactive');
+  } else {
+    buttonElement.classList.remove('button_inactive');
+  }
+}
+
+function setEventListeners(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll('.pop-up__input'));
+  const buttonElement = formElement.querySelector('.pop-up__save-button');
+
+  toggleButtonState(inputList, buttonElement);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+}
+
+const enableValidation = () => {
+  Array.from(document.querySelectorAll('.pop-up__form')).forEach(form => setEventListeners(form));
+};
+
+// ============================= pop-up open and close helper wrapper
 function submitMiddleware(action, popUp) {
   return function (event) {
     event.preventDefault();
-
-    // if (getInputs(popUp).some(isInputValueEmpty)) {
-    //   markEmptyAsError(getInputs(popUp));
-    //   return;
-    // }
 
     action();
 
@@ -71,11 +111,9 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   getCloseButton(popUp).addEventListener('click', closePopUp);
 
   openButton.addEventListener('click', openPopUp);
-
-  // other logic
-  // getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
 
+// ============================= Cards in gallery
 function makeCardNode({ name, link }) {
   const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
 
@@ -107,7 +145,7 @@ function loadCardsToGallery() {
   initialCards.map(makeCardNode).forEach(insertIntoGallery);
 };
 
-// Edit profile pop-up
+// ============================= Edit profile pop-up
 function initProfilePopUp() {
   const popUp = document.querySelector('.pop-up_type_profile');
   const openButton = document.querySelector('.profile__modify-button');
@@ -135,7 +173,7 @@ function initProfilePopUp() {
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
-// Single card view pop-up
+// ============================= Single card view pop-up
 function initGalleryCardPictureViewPopUp(openButton, name, link) {
   const popUp = document.querySelector('.pop-up_type_show-card');
 
@@ -147,7 +185,7 @@ function initGalleryCardPictureViewPopUp(openButton, name, link) {
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
-// Gallery add picture pop-up
+// ============================= Gallery add picture pop-up
 function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_type_gallery-add');
   const openButton = document.querySelector('.profile__add-button');
@@ -172,3 +210,4 @@ function initGalleryAddPopUp() {
 initProfilePopUp();
 initGalleryAddPopUp();
 loadCardsToGallery();
+enableValidation();

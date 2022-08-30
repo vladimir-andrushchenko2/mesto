@@ -15,17 +15,17 @@
   <div class="pop-up pop-up_type_profile">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
-      <form name="profile-form" action="/" method="get" class="pop-up__form">
+      <form name="profileForm" action="/" method="get" class="pop-up__form">
         <h2 class="pop-up__header">Редактировать профиль</h2>
         <label class="pop-up__form-field">
-          <input type="text" name="pop-up__input_type_title" class="pop-up__input pop-up__input_type_title"
-            placeholder="Ваше имя">
-          <span class="pop-up__input-error"></span>
+          <input id="title-input" type="text" name="pop-up__input_type_title"
+            class="pop-up__input pop-up__input_type_title" placeholder="Ваше имя" required>
+          <span class="pop-up__input-error title-input-error"></span>
         </label>
         <label class="pop-up__form-field">
-          <input type="text" name="pop-up__input_type_subtitle" class="pop-up__input pop-up__input_type_subtitle"
-            placeholder="О Вас">
-          <span class="pop-up__input-error"></span>
+          <input id="subtitle-input" type="text" name="pop-up__input_type_subtitle"
+            class="pop-up__input pop-up__input_type_subtitle" placeholder="О Вас" required>
+          <span class="pop-up__input-error subtitle-input-error"></span>
         </label>
         <input type="submit" class="pop-up__save-button" value="Сохранить">
       </form>
@@ -35,17 +35,17 @@
   <div class="pop-up pop-up_type_gallery-add pop-up_opened">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
-      <form name="gallery-add-form" action="/" method="get" class="pop-up__form">
+      <form name="galleryAddCardForm" action="/" method="get" class="pop-up__form">
         <h2 class="pop-up__header">Новое место</h2>
         <label class="pop-up__form-field">
-          <input type="text" name="pop-up__input_type_name" class="pop-up__input pop-up__input_type_name"
-            placeholder="Название">
-          <span class="pop-up__input-error"></span>
+          <input id="picture-name-input" type="text" name="pop-up__input_type_name"
+            class="pop-up__input pop-up__input_type_name" placeholder="Название" required>
+          <span class="pop-up__input-error picture-name-input-error"></span>
         </label>
         <label class="pop-up__form-field">
-          <input type="text" name="pop-up__input_type_picture-source"
-            class="pop-up__input pop-up__input_type_picture-source" placeholder="Ссылка на картинку">
-          <span class="pop-up__input-error"></span>
+          <input id="picture-source-input" type="url" name="pop-up__input_type_picture-source"
+            class="pop-up__input pop-up__input_type_picture-source" placeholder="Ссылка на картинку" required>
+          <span class="pop-up__input-error picture-source-input-error"></span>
         </label>
         <input type="submit" class="pop-up__save-button" value="Сохранить">
       </form>
