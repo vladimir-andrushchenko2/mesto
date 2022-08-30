@@ -76,6 +76,38 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   getInputs(popUp).forEach(input => input.addEventListener('input', removeMarkEmptyAsError));
 }
 
+function makeCardNode({ name, link }) {
+  const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
+
+  const picture = newNode.querySelector('.card__picture');
+  picture.src = link;
+  picture.alt = name;
+
+  newNode.querySelector('.card__caption').textContent = name;
+
+  function likeHandler(event) {
+    event.target.classList.toggle('card__like-button_active');
+  }
+
+  function deleteHandler(event) {
+    event.target.closest('.gallery__item').remove();
+  }
+
+  newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
+  newNode.querySelector('.card__delete-button').addEventListener('click', deleteHandler);
+
+  initGalleryCardPictureViewPopUp(picture, name, link);
+
+  return newNode;
+}
+
+const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
+
+function loadCardsToGallery() {
+  initialCards.map(makeCardNode).forEach(insertIntoGallery);
+};
+
+// Edit profile pop-up
 function initProfilePopUp() {
   const popUp = document.querySelector('.pop-up_type_profile');
   const openButton = document.querySelector('.profile__modify-button');
@@ -103,6 +135,7 @@ function initProfilePopUp() {
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
+// Single card view pop-up
 function initGalleryCardPictureViewPopUp(openButton, name, link) {
   const popUp = document.querySelector('.pop-up_type_show-card');
 
@@ -114,37 +147,7 @@ function initGalleryCardPictureViewPopUp(openButton, name, link) {
   setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
-function makeCardNode({ name, link }) {
-  function likeHandler(event) {
-    event.target.classList.toggle('card__like-button_active');
-  }
-
-  function deleteHandler(event) {
-    event.target.closest('.gallery__item').remove();
-  }
-
-  const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
-
-  const picture = newNode.querySelector('.card__picture');
-  picture.src = link;
-  picture.alt = name;
-
-  newNode.querySelector('.card__caption').textContent = name;
-
-  newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
-  newNode.querySelector('.card__delete-button').addEventListener('click', deleteHandler);
-
-  initGalleryCardPictureViewPopUp(picture, name, link);
-
-  return newNode;
-}
-
-const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
-
-function loadCardsToGallery() {
-  initialCards.map(makeCardNode).forEach(insertIntoGallery);
-};
-
+// Gallery add picture pop-up
 function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_type_gallery-add');
   const openButton = document.querySelector('.profile__add-button');
