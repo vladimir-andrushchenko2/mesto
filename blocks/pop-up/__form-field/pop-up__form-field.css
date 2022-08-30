@@ -1,0 +1,16 @@
+.pop-up__form-field {
+  margin: 30px auto 0;
+  display: block;
+  position: relative;
+  width: 358px;
+}
+
+.pop-up__form-field:nth-child(2) {
+  margin-top: 75px;
+}
+
+@media screen and (min-width: 624px) {
+  .pop-up__form-field:nth-child(2) {
+    margin-top: 54px;
+  }
+}
