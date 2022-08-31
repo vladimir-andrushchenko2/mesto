@@ -15,16 +15,17 @@
   <div class="pop-up pop-up_type_profile">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
-      <form name="profileForm" action="/" method="get" class="pop-up__form">
+      <form name="profileForm" action="/" method="get" class="pop-up__form" novalidate>
         <h2 class="pop-up__header">Редактировать профиль</h2>
         <label class="pop-up__form-field">
           <input id="title-input" type="text" name="pop-up__input_type_title"
-            class="pop-up__input pop-up__input_type_title" placeholder="Ваше имя" required>
+            class="pop-up__input pop-up__input_type_title" placeholder="Ваше имя" minlength="2" maxlength="40" required>
           <span class="pop-up__input-error title-input-error"></span>
         </label>
         <label class="pop-up__form-field">
           <input id="subtitle-input" type="text" name="pop-up__input_type_subtitle"
-            class="pop-up__input pop-up__input_type_subtitle" placeholder="О Вас" required>
+            class="pop-up__input pop-up__input_type_subtitle" placeholder="О Вас" minlength="2" maxlength="200"
+            required>
           <span class="pop-up__input-error subtitle-input-error"></span>
         </label>
         <input type="submit" class="pop-up__save-button" value="Сохранить">
@@ -32,14 +33,14 @@
     </div>
   </div>
 
-  <div class="pop-up pop-up_type_gallery-add pop-up_opened">
+  <div class="pop-up pop-up_type_gallery-add">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn"></button>
-      <form name="galleryAddCardForm" action="/" method="get" class="pop-up__form">
+      <form name="galleryAddCardForm" action="/" method="get" class="pop-up__form" novalidate>
         <h2 class="pop-up__header">Новое место</h2>
         <label class="pop-up__form-field">
           <input id="picture-name-input" type="text" name="pop-up__input_type_name"
-            class="pop-up__input pop-up__input_type_name" placeholder="Название" required>
+            class="pop-up__input pop-up__input_type_name" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="pop-up__input-error picture-name-input-error"></span>
         </label>
         <label class="pop-up__form-field">

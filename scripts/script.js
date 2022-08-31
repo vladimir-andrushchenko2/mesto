@@ -62,17 +62,15 @@ function hasInvalidInput(inputList) {
 
 function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('button_inactive');
+    buttonElement.classList.add('pop-up__save-button_inactive');
   } else {
-    buttonElement.classList.remove('button_inactive');
+    buttonElement.classList.remove('pop-up__save-button_inactive');
   }
 }
 
 function setEventListeners(formElement) {
   const inputList = Array.from(formElement.querySelectorAll('.pop-up__input'));
   const buttonElement = formElement.querySelector('.pop-up__save-button');
-
-  toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
@@ -148,7 +146,8 @@ function loadCardsToGallery() {
 // ============================= Edit profile pop-up
 function initProfilePopUp() {
   const popUp = document.querySelector('.pop-up_type_profile');
-  const openButton = document.querySelector('.profile__modify-button');
+  const openPopUpButton = document.querySelector('.profile__modify-button');
+  const saveButton = getSubmitButton(popUp);
 
   const title = document.querySelector('.profile__title-text');
   const subtitle = document.querySelector('.profile__subtitle');
@@ -159,6 +158,7 @@ function initProfilePopUp() {
   function onOpen() {
     inputTitle.value = title.textContent;
     inputSubtitle.value = subtitle.textContent;
+    toggleButtonState([inputTitle, inputSubtitle], saveButton);
   }
 
   function onSubmit() {
@@ -170,7 +170,7 @@ function initProfilePopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
+  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
 }
 
 // ============================= Single card view pop-up
@@ -188,13 +188,18 @@ function initGalleryCardPictureViewPopUp(openButton, name, link) {
 // ============================= Gallery add picture pop-up
 function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_type_gallery-add');
-  const openButton = document.querySelector('.profile__add-button');
+  const openPopUpButton = document.querySelector('.profile__add-button');
+  const saveButton = getSubmitButton(popUp);
 
   const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
   const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
 
   function onClose() {
     getForm(popUp).reset();
+  }
+
+  function onOpen() {
+    toggleButtonState([inputPictureName, inputPictureSource], saveButton);
   }
 
   function onSubmit() {
@@ -204,7 +209,7 @@ function initGalleryAddPopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openButton, () => { }, onClose);
+  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
 
 initProfilePopUp();

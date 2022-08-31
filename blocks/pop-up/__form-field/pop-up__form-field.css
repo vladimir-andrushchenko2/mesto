@@ -2,7 +2,7 @@
   margin: 30px auto 0;
   display: block;
   position: relative;
-  width: 358px;
+  width: 238px;
 }
 
 .pop-up__form-field:nth-child(2) {
@@ -12,5 +12,6 @@
 @media screen and (min-width: 624px) {
   .pop-up__form-field:nth-child(2) {
     margin-top: 54px;
+    width: 358px;
   }
 }
