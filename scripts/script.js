@@ -109,6 +109,8 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   getCloseButton(popUp).addEventListener('click', closePopUp);
 
   openButton.addEventListener('click', openPopUp);
+
+  return [openPopUp, closePopUp];
 }
 
 // ============================= Cards in gallery
@@ -170,7 +172,7 @@ function initProfilePopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
+  return setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
 }
 
 // ============================= Single card view pop-up
@@ -212,7 +214,13 @@ function initGalleryAddPopUp() {
   setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
 
-initProfilePopUp();
+const [openProfilePopUp, closeProfilePopUp] = initProfilePopUp();
 initGalleryAddPopUp();
 loadCardsToGallery();
 enableValidation();
+
+document.addEventListener('keydown', event => {
+  if (event.key = 'Escape') {
+    closeProfilePopUp();
+  }
+})
