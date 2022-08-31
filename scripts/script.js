@@ -184,7 +184,7 @@ function initGalleryCardPictureViewPopUp(openButton, name, link) {
     popUp.querySelector('.pop-up__image-caption').textContent = name;
   }
 
-  setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
+  return setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
 }
 
 // ============================= Gallery add picture pop-up
@@ -211,7 +211,7 @@ function initGalleryAddPopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
+  return setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
 
 const [openProfilePopUp, closeProfilePopUp] = initProfilePopUp();
