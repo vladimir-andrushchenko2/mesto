@@ -110,7 +110,7 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
 
   openButton.addEventListener('click', openPopUp);
 
-  return [openPopUp, closePopUp];
+  return closePopUp;
 }
 
 // ============================= Cards in gallery
@@ -133,8 +133,6 @@ function makeCardNode({ name, link }) {
 
   newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
   newNode.querySelector('.card__delete-button').addEventListener('click', deleteHandler);
-
-  initGalleryCardPictureViewPopUp(picture, name, link);
 
   return newNode;
 }
@@ -176,15 +174,23 @@ function initProfilePopUp() {
 }
 
 // ============================= Single card view pop-up
-function initGalleryCardPictureViewPopUp(openButton, name, link) {
+function initGalleryCardPictureViewPopUp() {
   const popUp = document.querySelector('.pop-up_type_show-card');
+  const galleryItems = document.querySelector('.gallery__items');
 
-  function onOpen() {
-    popUp.querySelector('.pop-up__image').src = link;
-    popUp.querySelector('.pop-up__image-caption').textContent = name;
-  }
+  galleryItems.addEventListener('click', event => {
+    const target = event.target;
 
-  return setOpeningAndClosingOfPopUp(popUp, openButton, onOpen);
+    if (target.classList.contains('card__picture')) {
+      popUp.querySelector('.pop-up__image').src = target.src;
+      popUp.querySelector('.pop-up__image-caption').textContent = target.alt;
+      showPopUp(popUp);
+    }
+  })
+
+  getCloseButton(popUp).addEventListener('click', () => hidePopUp(popUp));
+
+  return () => hidePopUp(popUp);
 }
 
 // ============================= Gallery add picture pop-up
@@ -214,13 +220,16 @@ function initGalleryAddPopUp() {
   return setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
 
-const [openProfilePopUp, closeProfilePopUp] = initProfilePopUp();
-initGalleryAddPopUp();
+const closeProfilePopUp = initProfilePopUp();
+const closeGalleryAddPopUp = initGalleryAddPopUp();
+const closeGalleryCardPictureViewPopUp = initGalleryCardPictureViewPopUp();
 loadCardsToGallery();
 enableValidation();
 
 document.addEventListener('keydown', event => {
-  if (event.key = 'Escape') {
+  if (event.key === 'Escape') {
     closeProfilePopUp();
+    closeGalleryAddPopUp();
+    closeGalleryCardPictureViewPopUp();
   }
 })
