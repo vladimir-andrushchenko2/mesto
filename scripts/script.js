@@ -114,6 +114,12 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
 
   openButton.addEventListener('click', openPopUp);
 
+  popUp.addEventListener('click', (event) => {
+    if (event.target.classList.contains('pop-up')) {
+      closePopUp();
+    }
+  })
+
   return closePopUp;
 }
 
@@ -189,6 +195,12 @@ function initGalleryCardPictureViewPopUp() {
       popUp.querySelector('.pop-up__image').src = target.src;
       popUp.querySelector('.pop-up__image-caption').textContent = target.alt;
       showPopUp(popUp);
+    }
+  })
+
+  popUp.addEventListener('click', (event) => {
+    if (event.target.classList.contains('pop-up')) {
+      hidePopUp(popUp);
     }
   })
 
