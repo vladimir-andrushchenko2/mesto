@@ -22,10 +22,6 @@ function showPopUp(popUp) {
   popUp.classList.add('pop-up_opened');
 }
 
-function getInputs(popUp) {
-  return Array.from(popUp.querySelectorAll('.pop-up__input'));
-}
-
 function getSubmitButton(popUp) {
   return popUp.querySelector('.pop-up__save-button');
 }
@@ -36,10 +32,6 @@ function getCloseButton(popUp) {
 
 function getForm(popUp) {
   return popUp.querySelector('.pop-up__form');
-}
-
-function isInputValueEmpty(input) {
-  return input.value === '' ? true : false;
 }
 
 // ============================= Validation logic
