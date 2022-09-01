@@ -98,25 +98,34 @@ function submitMiddleware(action, popUp) {
 function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => { }) {
   function openPopUp() {
     onOpen();
+
+    document.addEventListener('keydown', closeOnEsc);
+
     showPopUp(popUp);
   }
 
   function closePopUp() {
     onClose();
+    document.removeEventListener('keydown', closeOnEsc);
     hidePopUp(popUp);
+  }
+
+  function closeOnEsc(event) {
+    if (event.key === 'Escape') {
+      closePopUp();
+    }
   }
 
   getCloseButton(popUp).addEventListener('click', closePopUp);
 
   openButton.addEventListener('click', openPopUp);
 
+  // close by clicking on off-white area
   popUp.addEventListener('click', (event) => {
     if (event.target.classList.contains('pop-up')) {
       closePopUp();
     }
   })
-
-  return closePopUp;
 }
 
 // ============================= Cards in gallery
@@ -176,7 +185,7 @@ function initProfilePopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  return setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
+  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
 }
 
 // ============================= Single card view pop-up
@@ -184,13 +193,27 @@ function initGalleryCardPictureViewPopUp() {
   const popUp = document.querySelector('.pop-up_type_show-card');
   const galleryItems = document.querySelector('.gallery__items');
 
+  function closePopUp(event) {
+    hidePopUp(popUp);
+    document.removeEventListener('keydown', closeOnEsc);
+  }
+
+  function closeOnEsc(event) {
+    if (event.key === 'Escape') {
+      closePopUp();
+    }
+  }
+
   galleryItems.addEventListener('click', event => {
     const target = event.target;
 
     if (target.classList.contains('card__picture')) {
       popUp.querySelector('.pop-up__image').src = target.src;
       popUp.querySelector('.pop-up__image-caption').textContent = target.alt;
+
       showPopUp(popUp);
+
+      document.addEventListener('keydown', closeOnEsc);
     }
   })
 
@@ -201,8 +224,6 @@ function initGalleryCardPictureViewPopUp() {
   })
 
   getCloseButton(popUp).addEventListener('click', () => hidePopUp(popUp));
-
-  return () => hidePopUp(popUp);
 }
 
 // ============================= Gallery add picture pop-up
@@ -229,19 +250,11 @@ function initGalleryAddPopUp() {
 
   getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
-  return setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
+  setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
 
-const closeProfilePopUp = initProfilePopUp();
-const closeGalleryAddPopUp = initGalleryAddPopUp();
-const closeGalleryCardPictureViewPopUp = initGalleryCardPictureViewPopUp();
+initProfilePopUp();
+initGalleryAddPopUp();
+initGalleryCardPictureViewPopUp();
 loadCardsToGallery();
 enableValidation();
-
-document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') {
-    closeProfilePopUp();
-    closeGalleryAddPopUp();
-    closeGalleryCardPictureViewPopUp();
-  }
-})
