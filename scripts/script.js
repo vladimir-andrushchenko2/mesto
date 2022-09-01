@@ -96,13 +96,9 @@ function submitMiddleware(action, popUp) {
 }
 
 function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => { }) {
-  const firstInput = popUp.querySelector('.pop-up__input');
-
   function openPopUp() {
     onOpen();
     showPopUp(popUp);
-    firstInput.focus();
-    console.log(firstInput);
   }
 
   function closePopUp() {
