@@ -114,7 +114,7 @@ function initProfilePopUp() {
   function onOpen() {
     inputTitle.value = title.textContent;
     inputSubtitle.value = subtitle.textContent;
-    toggleButtonState([inputTitle, inputSubtitle], saveButton);
+    toggleButtonState([inputTitle, inputSubtitle], saveButton, 'pop-up__save-button_inactive');
   }
 
   function onSubmit() {
