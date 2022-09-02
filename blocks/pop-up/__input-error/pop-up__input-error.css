@@ -4,8 +4,15 @@
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
-  width: 358px;
+  width: 238px;
   font-size: 12px;
   line-height: 15px;
   color: #ff0000;
+  min-height: 30px;
+}
+
+@media screen and (min-width: 624px) {
+  .pop-up__input-error {
+    width: 358px;
+  }
 }
