@@ -70,25 +70,51 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
 }
 
 // ============================= Cards in gallery
-function makeCardNode({ name, link }) {
-  const newNode = document.querySelector('#card').content.querySelector('.gallery__item').cloneNode(true);
+const galleryConfig = {
+  cardTemplateSelector: '#card',
+  cardNodeSelector: '.gallery__item',
+  cardPictureSelector: '.card__picture',
+  cardCaptionSelector: '.card__caption',
+  cardLikeButtonActiveClass: 'card__like-button_active',
+  popUpSelector: '.pop-up_type_show-card',
+  popUpImageSelector: '.pop-up__image',
+  popUpImageCaptionSelector: '.pop-up__image-caption',
+  cardLikeButtonSelector: '.card__like-button',
+  cardDeleteButtonSelector: '.card__delete-button'
+};
 
-  const picture = newNode.querySelector('.card__picture');
+function makeCardNode({ name, link }, config) {
+  const newNode = document.querySelector(config.cardTemplateSelector).content.querySelector(config.cardNodeSelector).cloneNode(true);
+
+  const picture = newNode.querySelector(config.cardPictureSelector);
   picture.src = link;
   picture.alt = name;
 
-  newNode.querySelector('.card__caption').textContent = name;
+  const caption = newNode.querySelector(config.cardCaptionSelector);
+  caption.textContent = name;
+
+  const popUp = document.querySelector(config.popUpSelector);
+  const popUpImage = popUp.querySelector(config.popUpImageSelector);
+  const popUpCaption = popUp.querySelector(config.popUpImageCaptionSelector);
 
   function likeHandler(event) {
-    event.target.classList.toggle('card__like-button_active');
+    event.target.classList.toggle(config.cardLikeButtonActiveClass);
   }
 
   function deleteHandler(event) {
-    event.target.closest('.gallery__item').remove();
+    event.target.closest(config.cardNodeSelector).remove();
   }
 
-  newNode.querySelector('.card__like-button').addEventListener('click', likeHandler);
-  newNode.querySelector('.card__delete-button').addEventListener('click', deleteHandler);
+  function onOpen() {
+    popUpImage.src = picture.src;
+    popUpImage.alt = picture.alt;
+    popUpCaption.textContent = caption.textContent;
+  }
+
+  setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
+
+  newNode.querySelector(config.cardLikeButtonSelector).addEventListener('click', likeHandler);
+  newNode.querySelector(config.cardDeleteButtonSelector).addEventListener('click', deleteHandler);
 
   return newNode;
 }
@@ -96,7 +122,7 @@ function makeCardNode({ name, link }) {
 const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
 
 function loadCardsToGallery() {
-  initialCards.map(makeCardNode).forEach(insertIntoGallery);
+  initialCards.map(card => makeCardNode(card, galleryConfig)).forEach(insertIntoGallery);
 };
 
 // ============================= Edit profile pop-up
@@ -129,44 +155,6 @@ function initProfilePopUp() {
   setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
 }
 
-// ============================= Single card view pop-up
-function initGalleryCardPictureViewPopUp() {
-  const popUp = document.querySelector('.pop-up_type_show-card');
-  const galleryItems = document.querySelector('.gallery__items');
-
-  function closePopUp(event) {
-    hidePopUp(popUp);
-    document.removeEventListener('keydown', closeOnEsc);
-  }
-
-  function closeOnEsc(event) {
-    if (event.key === 'Escape') {
-      closePopUp();
-    }
-  }
-
-  galleryItems.addEventListener('click', event => {
-    const target = event.target;
-
-    if (target.classList.contains('card__picture')) {
-      popUp.querySelector('.pop-up__image').src = target.src;
-      popUp.querySelector('.pop-up__image-caption').textContent = target.alt;
-
-      showPopUp(popUp);
-
-      document.addEventListener('keydown', closeOnEsc);
-    }
-  })
-
-  popUp.addEventListener('click', (event) => {
-    if (event.target.classList.contains('pop-up')) {
-      hidePopUp(popUp);
-    }
-  })
-
-  getCloseButton(popUp).addEventListener('click', () => hidePopUp(popUp));
-}
-
 // ============================= Gallery add picture pop-up
 function initGalleryAddPopUp() {
   const popUp = document.querySelector('.pop-up_type_gallery-add');
@@ -185,7 +173,7 @@ function initGalleryAddPopUp() {
   }
 
   function onSubmit() {
-    insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }));
+    insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig));
     getForm(popUp).reset();
   }
 
@@ -196,5 +184,4 @@ function initGalleryAddPopUp() {
 
 initProfilePopUp();
 initGalleryAddPopUp();
-initGalleryCardPictureViewPopUp();
 loadCardsToGallery();
