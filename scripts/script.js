@@ -181,7 +181,7 @@ function initGalleryAddPopUp() {
   }
 
   function onOpen() {
-    toggleButtonState([inputPictureName, inputPictureSource], saveButton);
+    toggleButtonState([inputPictureName, inputPictureSource], saveButton, 'pop-up__save-button_inactive');
   }
 
   function onSubmit() {
