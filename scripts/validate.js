@@ -1,4 +1,4 @@
-const config = {
+const validationConfig = {
   formSelector: '.pop-up__form',
   inputSelector: '.pop-up__input',
   submitButtonSelector: '.pop-up__save-button',
@@ -6,6 +6,12 @@ const config = {
   inputErrorClass: 'pop-up__input_type_error',
   errorClass: 'pop-up__input-error_active'
 };
+
+function resetError(formElement, config) {
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  // очищаем ошибки валидации
+  inputList.forEach(inputElement => hideInputError(formElement, inputElement, config));
+}
 
 function showInputError(formElement, inputElement, errorMessage, { inputErrorClass, errorClass }) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -59,4 +65,4 @@ const enableValidation = (config) => {
   Array.from(document.querySelectorAll(config.formSelector)).forEach(form => setEventListeners(form, config));
 };
 
-enableValidation(config);
+enableValidation(validationConfig);

@@ -39,9 +39,7 @@ function submitMiddleware(action, popUp) {
 function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => { }) {
   function openPopUp() {
     onOpen();
-
     document.addEventListener('keydown', closeOnEsc);
-
     showPopUp(popUp);
   }
 
@@ -140,6 +138,7 @@ function initProfilePopUp() {
   function onOpen() {
     inputTitle.value = title.textContent;
     inputSubtitle.value = subtitle.textContent;
+    resetError(popUp, validationConfig);
     toggleButtonState([inputTitle, inputSubtitle], saveButton, 'pop-up__save-button_inactive');
   }
 
@@ -169,6 +168,7 @@ function initGalleryAddPopUp() {
   }
 
   function onOpen() {
+    resetError(popUp, validationConfig);
     toggleButtonState([inputPictureName, inputPictureSource], saveButton, 'pop-up__save-button_inactive');
   }
 
