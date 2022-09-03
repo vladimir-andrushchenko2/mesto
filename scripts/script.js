@@ -62,7 +62,7 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   openButton.addEventListener('click', openPopUp);
 
   // close by clicking on off-white area
-  popUp.addEventListener('click', (event) => {
+  popUp.addEventListener('mousedown', (event) => {
     if (event.target.classList.contains('pop-up')) {
       closePopUp();
     }
