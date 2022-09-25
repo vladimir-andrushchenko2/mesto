@@ -80,47 +80,65 @@ const galleryConfig = {
   cardLikeButtonSelector: '.card__like-button',
   cardDeleteButtonSelector: '.card__delete-button'
 };
-
-function makeCardNode({ name, link }, config) {
-  const newNode = document.querySelector(config.cardTemplateSelector).content.querySelector(config.cardNodeSelector).cloneNode(true);
-
-  const picture = newNode.querySelector(config.cardPictureSelector);
-  picture.src = link;
-  picture.alt = name;
-
-  const caption = newNode.querySelector(config.cardCaptionSelector);
-  caption.textContent = name;
-
-  const popUp = document.querySelector(config.popUpSelector);
-  const popUpImage = popUp.querySelector(config.popUpImageSelector);
-  const popUpCaption = popUp.querySelector(config.popUpImageCaptionSelector);
-
-  function likeHandler(event) {
-    event.target.classList.toggle(config.cardLikeButtonActiveClass);
+class Card {
+  constructor(data, config) {
+    this._name = data.name;
+    this._link = data.link;
+    this._config = config;
   }
 
-  function deleteHandler(event) {
-    event.target.closest(config.cardNodeSelector).remove();
+  _getTemplate() {
+    return document
+      .querySelector(this._config.cardTemplateSelector)
+      .content.querySelector(this._config.cardNodeSelector)
+      .cloneNode(true);
   }
 
-  function onOpen() {
-    popUpImage.src = picture.src;
-    popUpImage.alt = picture.alt;
-    popUpCaption.textContent = caption.textContent;
+  _handleLike(event) {
+    event.target.classList.toggle(this._config.cardLikeButtonActiveClass);
   }
 
-  setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
+  _handleDelete(event) {
+    event.target.closest(this._config.cardNodeSelector).remove();
+  }
 
-  newNode.querySelector(config.cardLikeButtonSelector).addEventListener('click', likeHandler);
-  newNode.querySelector(config.cardDeleteButtonSelector).addEventListener('click', deleteHandler);
+  _setEventListeners() {
+    this._element.querySelector(this._config.cardLikeButtonSelector).addEventListener('click', (event) => this._handleLike(event));
+    this._element.querySelector(this._config.cardDeleteButtonSelector).addEventListener('click', (event) => this._handleDelete(event));
+  }
 
-  return newNode;
+  generateCard() {
+    this._element = this._getTemplate();
+
+    this._setEventListeners();
+
+    const picture = this._element.querySelector(this._config.cardPictureSelector);
+    picture.src = this._link;
+    picture.alt = this._name;
+
+    const caption = this._element.querySelector(this._config.cardCaptionSelector);
+    caption.textContent = this._name;
+
+    const popUp = document.querySelector(this._config.popUpSelector);
+    const popUpImage = popUp.querySelector(this._config.popUpImageSelector);
+    const popUpCaption = popUp.querySelector(this._config.popUpImageCaptionSelector);
+
+    function onOpen() {
+      popUpImage.src = picture.src;
+      popUpImage.alt = picture.alt;
+      popUpCaption.textContent = caption.textContent;
+    }
+
+    setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
+
+    return this._element;
+  }
 }
 
 const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
 
 function loadCardsToGallery() {
-  initialCards.map(card => makeCardNode(card, galleryConfig)).forEach(insertIntoGallery);
+  initialCards.map(card => new Card(card, galleryConfig).generateCard()).forEach(insertIntoGallery);
 };
 
 // ============================= Edit profile pop-up
