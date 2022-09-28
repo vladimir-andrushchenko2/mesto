@@ -57,7 +57,9 @@ function initProfilePopUp() {
   const inputTitle = popUp.querySelector('.pop-up__input_type_title');
   const inputSubtitle = popUp.querySelector('.pop-up__input_type_subtitle');
 
-  const validator = new FormValidator(getForm(popUp), validationConfig);
+  const form = getForm(popUp);
+
+  const validator = new FormValidator(form, validationConfig);
   validator.enableValidation();
 
   function onOpen() {
@@ -72,10 +74,10 @@ function initProfilePopUp() {
     title.textContent = inputTitle.value;
     subtitle.textContent = inputSubtitle.value;
 
-    getForm(popUp).reset();
+    form.reset();
   }
 
-  getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
+  form.addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
   setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen);
 }
@@ -88,11 +90,13 @@ function initGalleryAddPopUp() {
   const inputPictureName = popUp.querySelector('.pop-up__input_type_name');
   const inputPictureSource = popUp.querySelector('.pop-up__input_type_picture-source');
 
-  const validator = new FormValidator(getForm(popUp), validationConfig);
+  const form = getForm(popUp);
+
+  const validator = new FormValidator(form, validationConfig);
   validator.enableValidation();
 
   function onClose() {
-    getForm(popUp).reset();
+    form.reset();
   }
 
   function onOpen() {
@@ -102,10 +106,10 @@ function initGalleryAddPopUp() {
 
   function onSubmit() {
     insertIntoGallery(new Card({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig, handleOpenPictureInPopUp).generateCard());
-    getForm(popUp).reset();
+    form.reset();
   }
 
-  getForm(popUp).addEventListener('submit', submitMiddleware(onSubmit, popUp));
+  form.addEventListener('submit', submitMiddleware(onSubmit, popUp));
 
   setOpeningAndClosingOfPopUp(popUp, openPopUpButton, onOpen, onClose);
 }
