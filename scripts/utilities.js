@@ -8,6 +8,10 @@ function hidePopUp(popUp) {
   popUp.classList.remove('pop-up_opened');
 }
 
+function isLeftMouseClick(button) {
+  return button === 0;
+}
+
 function showPopUp(popUp) {
   popUp.classList.add('pop-up_opened');
 }
@@ -54,13 +58,13 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
     }
   }
 
-  getCloseButton(popUp).addEventListener('click', closePopUp);
-
   openButton.addEventListener('click', openPopUp);
 
   // close by clicking on off-white area
-  popUp.addEventListener('mousedown', (event) => {
-    if (event.target.classList.contains('pop-up')) {
+  popUp.addEventListener('mousedown', ({ target, button }) => {
+    if (isLeftMouseClick(button) &&
+      (target.classList.contains('pop-up') ||
+        target.classList.contains('pop-up__close-btn'))) {
       closePopUp();
     }
   })
