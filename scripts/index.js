@@ -1,4 +1,4 @@
-import { FormValidator, validationConfig } from './FormValidator.js'
+import FormValidator from './FormValidator.js'
 import { initialCards } from './cards.js'
 import { makeFrontInserter, getForm, submitMiddleware, setOpeningAndClosingOfPopUp } from './utilities.js'
 import Card from './Card.js'
@@ -15,6 +15,15 @@ const galleryConfig = {
   popUpImageCaptionSelector: '.pop-up__image-caption',
   cardLikeButtonSelector: '.card__like-button',
   cardDeleteButtonSelector: '.card__delete-button'
+};
+
+const validationConfig = {
+  formSelector: '.pop-up__form',
+  inputSelector: '.pop-up__input',
+  submitButtonSelector: '.pop-up__save-button',
+  inactiveButtonClass: 'pop-up__save-button_inactive',
+  inputErrorClass: 'pop-up__input_type_error',
+  errorClass: 'pop-up__input-error_active'
 };
 
 const handleOpenPictureInPopUp = (picture, caption, config) => {
