@@ -78,7 +78,7 @@ function initGalleryAddPopUp() {
   }
 
   function onSubmit() {
-    insertIntoGallery(makeCardNode({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig));
+    insertIntoGallery(new Card({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig).generateCard());
     getForm(popUp).reset();
   }
 
