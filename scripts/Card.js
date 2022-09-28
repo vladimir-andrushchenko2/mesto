@@ -1,9 +1,9 @@
 import { setOpeningAndClosingOfPopUp } from './utilities.js';
 
 export default class Card {
-  constructor(data, config, handleOpenPopUp) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({ name, link }, config, handleOpenPopUp) {
+    this._name = name;
+    this._link = link;
     this._config = config;
     this._handleOpenPopUp = handleOpenPopUp;
   }
@@ -20,7 +20,7 @@ export default class Card {
   }
 
   _handleDelete(event) {
-    event.target.closest(this._config.cardNodeSelector).remove();
+    this._element.remove();
   }
 
   _setEventListeners() {
