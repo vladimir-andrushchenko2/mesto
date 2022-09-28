@@ -40,7 +40,7 @@ export default class Card {
     const caption = this._element.querySelector(this._config.cardCaptionSelector);
     caption.textContent = this._name;
 
-    this._handleOpenPopUp(picture, caption, this._config);
+    this._handleOpenPopUp(this._link, this._name, picture, this._config);
 
     return this._element;
   }

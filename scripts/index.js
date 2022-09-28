@@ -26,16 +26,23 @@ const validationConfig = {
   errorClass: 'pop-up__input-error_active'
 };
 
-const handleOpenPictureInPopUp = (picture, caption, config) => {
+const handleOpenPictureInPopUp = (link, name, picture, config) => {
   const popUp = document.querySelector(config.popUpSelector);
   const popUpImage = popUp.querySelector(config.popUpImageSelector);
   const popUpCaption = popUp.querySelector(config.popUpImageCaptionSelector);
 
   function onOpen() {
-    popUpImage.src = picture.src;
-    popUpImage.alt = picture.alt;
-    popUpCaption.textContent = caption.textContent;
+    popUpImage.src = link;
+    popUpImage.alt = name;
+    popUpCaption.textContent = name;
   }
+
+  picture.addEventListener('error', () => {
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('profile__picture-placeholder');
+    picture.after(placeholder);
+    picture.remove();
+  })
 
   setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
 }
