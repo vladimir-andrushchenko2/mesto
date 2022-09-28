@@ -17,10 +17,24 @@ const galleryConfig = {
   cardDeleteButtonSelector: '.card__delete-button'
 };
 
+const handleOpenPictureInPopUp = (picture, caption, config) => {
+  const popUp = document.querySelector(config.popUpSelector);
+  const popUpImage = popUp.querySelector(config.popUpImageSelector);
+  const popUpCaption = popUp.querySelector(config.popUpImageCaptionSelector);
+
+  function onOpen() {
+    popUpImage.src = picture.src;
+    popUpImage.alt = picture.alt;
+    popUpCaption.textContent = caption.textContent;
+  }
+
+  setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
+}
+
 const insertIntoGallery = makeFrontInserter(document.querySelector('.gallery__items'));
 
 function loadCardsToGallery() {
-  initialCards.map(card => new Card(card, galleryConfig).generateCard()).forEach(insertIntoGallery);
+  initialCards.map(card => new Card(card, galleryConfig, handleOpenPictureInPopUp).generateCard()).forEach(insertIntoGallery);
 };
 
 // ============================= Edit profile pop-up
@@ -78,7 +92,7 @@ function initGalleryAddPopUp() {
   }
 
   function onSubmit() {
-    insertIntoGallery(new Card({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig).generateCard());
+    insertIntoGallery(new Card({ name: inputPictureName.value, link: inputPictureSource.value }, galleryConfig, handleOpenPictureInPopUp).generateCard());
     getForm(popUp).reset();
   }
 
