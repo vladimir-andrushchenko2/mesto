@@ -1,16 +1,40 @@
-import Popup from './Popup';
-import { getForm } from './utilities';
+import Popup from './Popup.js';
+import FormValidator from './FormValidator.js';
+// import { getForm } from './utilities.js';
+import { validationConfig } from './constants.js';
 
 export class PopupWithForm extends Popup {
   constructor(popupSelector, onSubmit) {
     super(popupSelector);
-    this._form = getForm(super._element);
+
+    this._form = document.querySelector(popupSelector).querySelector('.pop-up__form');
     this._onSubmit = onSubmit;
+    this._validator = new FormValidator(this._form, validationConfig);
+    this._validator.enableValidation();
+  }
+
+  /**
+   *
+   * @param {function(popup)} onOpen
+   */
+  setOnOpen(onOpen) {
+    this._onOpen = onOpen;
   }
 
   close() {
     super.close();
     this._form.reset();
+  }
+
+  open() {
+    super.open();
+
+    this._validator.resetError();
+    this._validator.toggleButtonState();
+
+    if (this._onOpen) {
+      this._onOpen(this._element);
+    }
   }
 
   setEventListeners() {

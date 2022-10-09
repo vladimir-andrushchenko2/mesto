@@ -1,4 +1,4 @@
-import { isLeftMouseClick } from './utilities';
+import { isLeftMouseClick } from './utilities.js';
 export default class Popup {
   constructor(popupSelector) {
     this._element = document.querySelector(popupSelector);
