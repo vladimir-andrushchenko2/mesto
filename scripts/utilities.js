@@ -70,4 +70,4 @@ function setOpeningAndClosingOfPopUp(popUp, openButton, onOpen, onClose = () => 
   })
 }
 
-export { getForm, makeFrontInserter, hidePopUp, showPopUp, submitMiddleware, setOpeningAndClosingOfPopUp };
+export { getForm, makeFrontInserter, hidePopUp, showPopUp, submitMiddleware, setOpeningAndClosingOfPopUp, isLeftMouseClick };

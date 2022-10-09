@@ -1,11 +1,11 @@
 import { setOpeningAndClosingOfPopUp } from './utilities.js';
 
 export default class Card {
-  constructor({ name, link }, config, handleOpenPopUp) {
+  constructor({ name, link }, config, handleCardClick) {
     this._name = name;
     this._link = link;
     this._config = config;
-    this._handleOpenPopUp = handleOpenPopUp;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -40,7 +40,7 @@ export default class Card {
     const caption = this._element.querySelector(this._config.cardCaptionSelector);
     caption.textContent = this._name;
 
-    this._handleOpenPopUp(this._link, this._name, picture, this._config);
+    this._handleCardClick(this._link, this._name, picture, this._config);
 
     return this._element;
   }
