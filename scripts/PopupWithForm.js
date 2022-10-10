@@ -1,6 +1,5 @@
 import Popup from './Popup.js';
 import FormValidator from './FormValidator.js';
-// import { getForm } from './utilities.js';
 import { validationConfig } from './constants.js';
 
 export class PopupWithForm extends Popup {
@@ -30,11 +29,12 @@ export class PopupWithForm extends Popup {
     super.open();
 
     this._validator.resetError();
-    this._validator.toggleButtonState();
 
     if (this._onOpen) {
       this._onOpen(this._element);
     }
+
+    this._validator.toggleButtonState();
   }
 
   setEventListeners() {
