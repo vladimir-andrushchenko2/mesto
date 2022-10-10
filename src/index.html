@@ -5,13 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
-  <style>
-
-
-  </style>
-
 </head>
 
 <body class="root">
@@ -71,7 +65,7 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__picture" src="images/profile-picture.jpg" alt="заставка профиля">
+        <img class="profile__picture" src="<%=require('./images/profile-picture.jpg')%>" alt="заставка профиля">
 
         <div class="profile__title">
           <h1 class="profile__title-text">Жак-Ив Кусто</h1>
@@ -105,7 +99,6 @@
     </li>
   </template>
 
-  <script type="module" src="scripts/index.js"></script>
 </body>
 
 </html>
