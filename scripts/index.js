@@ -1,10 +1,10 @@
 import { initialCards } from './cards.js'
-import { setOpeningAndClosingOfPopUp } from './utilities.js'
 import Card from './Card.js'
 import PopupWithForm from './PopupWithForm.js';
 import { titleSelector, subtitleSelector, galleryConfig } from './constants.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const userInfo = new UserInfo(titleSelector, subtitleSelector);
 
@@ -27,26 +27,16 @@ profilePopUp.setOnOpen((form) => {
 
 document.querySelector('.profile__modify-button').addEventListener('click', () => profilePopUp.open());
 
+// show image pop up
+const { popUpSelector, popUpImageSelector, popUpImageCaptionSelector } = galleryConfig;
+
+const showImagePopUp = new PopupWithImage(popUpSelector, popUpImageSelector, popUpImageCaptionSelector);
+
+showImagePopUp.setEventListeners();
+
 // gallery pop-up
-const handleOpenPictureInPopUp = (link, name, picture, config) => {
-  const popUp = document.querySelector(config.popUpSelector);
-  const popUpImage = popUp.querySelector(config.popUpImageSelector);
-  const popUpCaption = popUp.querySelector(config.popUpImageCaptionSelector);
-
-  function onOpen() {
-    popUpImage.src = link;
-    popUpImage.alt = name;
-    popUpCaption.textContent = name;
-  }
-
-  picture.addEventListener('error', () => {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('profile__picture-placeholder');
-    picture.after(placeholder);
-    picture.remove();
-  })
-
-  setOpeningAndClosingOfPopUp(popUp, picture, onOpen);
+const handleOpenPictureInPopUp = (link, name) => {
+  showImagePopUp.open(link, name);
 }
 
 const gallery = new Section({

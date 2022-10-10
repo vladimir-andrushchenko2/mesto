@@ -1,5 +1,3 @@
-import { setOpeningAndClosingOfPopUp } from './utilities.js';
-
 export default class Card {
   constructor({ name, link }, config, handleCardClick) {
     this._name = name;
@@ -40,7 +38,16 @@ export default class Card {
     const caption = this._element.querySelector(this._config.cardCaptionSelector);
     caption.textContent = this._name;
 
-    this._handleCardClick(this._link, this._name, picture, this._config);
+    picture.addEventListener('error', () => {
+      const placeholder = document.createElement('div');
+      placeholder.classList.add('profile__picture-placeholder');
+      picture.after(placeholder);
+      picture.remove();
+    })
+
+    picture.addEventListener('click', () => {
+      this._handleCardClick(this._link, this._name);
+    });
 
     return this._element;
   }
