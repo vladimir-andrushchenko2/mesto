@@ -2,7 +2,7 @@ import Popup from './Popup.js';
 import FormValidator from './FormValidator.js';
 import { validationConfig } from './constants.js';
 
-export class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
   constructor(popupSelector, onSubmit) {
     super(popupSelector);
 

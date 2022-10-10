@@ -1,14 +1,16 @@
 import { initialCards } from './cards.js'
-import { makeFrontInserter, setOpeningAndClosingOfPopUp } from './utilities.js'
+import { setOpeningAndClosingOfPopUp } from './utilities.js'
 import Card from './Card.js'
-import { PopupWithForm } from './PopupWithForm.js';
-import { title, subtitle, galleryConfig } from './constants.js';
+import PopupWithForm from './PopupWithForm.js';
+import { titleSelector, subtitleSelector, galleryConfig } from './constants.js';
 import Section from './Section.js';
+import UserInfo from './UserInfo.js';
+
+const userInfo = new UserInfo(titleSelector, subtitleSelector);
 
 // profile pop-up
-const profilePopUp = new PopupWithForm('.pop-up_type_profile', ({ title: inputTitle, subtitle: inputSubtitle }) => {
-  title.textContent = inputTitle;
-  subtitle.textContent = inputSubtitle;
+const profilePopUp = new PopupWithForm('.pop-up_type_profile', ({ title, subtitle }) => {
+  userInfo.setUserInfo({ name: title, description: subtitle });
 });
 
 profilePopUp.setEventListeners();
@@ -17,8 +19,10 @@ profilePopUp.setOnOpen((form) => {
   const inputTitle = form.querySelector('.pop-up__input_type_title');
   const inputSubtitle = form.querySelector('.pop-up__input_type_subtitle');
 
-  inputTitle.value = title.textContent;
-  inputSubtitle.value = subtitle.textContent;
+  const { name, description } = userInfo.getUserInfo();
+
+  inputTitle.value = name;
+  inputSubtitle.value = description;
 });
 
 document.querySelector('.profile__modify-button').addEventListener('click', () => profilePopUp.open());

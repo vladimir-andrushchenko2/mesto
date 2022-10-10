@@ -1,5 +1,5 @@
-export const title = document.querySelector('.profile__title-text');
-export const subtitle = document.querySelector('.profile__subtitle');
+export const titleSelector = '.profile__title-text';
+export const subtitleSelector = '.profile__subtitle';
 
 export const galleryConfig = {
   cardTemplateSelector: '#card',
