@@ -20,7 +20,7 @@ export default class Popup {
       if (isLeftMouseClick(button) &&
         (target.classList.contains('pop-up') ||
           target.classList.contains('pop-up__close-btn'))) {
-        closePopUp();
+        this.close();
       }
     })
   }
