@@ -2,31 +2,43 @@ import '../pages/index.css';
 import { initialCards } from './cards.js'
 import Card from './Card.js'
 import PopupWithForm from './PopupWithForm.js';
-import { titleSelector, subtitleSelector, galleryConfig } from './constants.js';
+import { validationConfig, titleSelector, subtitleSelector, galleryConfig } from './constants.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
 import PopupWithImage from './PopupWithImage.js';
-
-const userInfo = new UserInfo(titleSelector, subtitleSelector);
+import FormValidator from './FormValidator.js';
 
 // profile pop-up
-const profilePopUp = new PopupWithForm('.pop-up_type_profile', ({ title, subtitle }) => {
-  userInfo.setUserInfo({ name: title, description: subtitle });
-});
+const userInfo = new UserInfo(titleSelector, subtitleSelector);
+
+const profilePopUp = new PopupWithForm('.pop-up_type_profile',
+  ({ title, subtitle }) => {
+    userInfo.setUserInfo({ name: title, description: subtitle });
+  }
+);
 
 profilePopUp.setEventListeners();
 
-profilePopUp.setOnOpen((form) => {
-  const inputTitle = form.querySelector('.pop-up__input_type_title');
-  const inputSubtitle = form.querySelector('.pop-up__input_type_subtitle');
+const profileEditForm = document.querySelector('.pop-up_type_profile').querySelector('.pop-up__form');
+
+const profileFormValidator = new FormValidator(profileEditForm, validationConfig);
+profileFormValidator.enableValidation();
+
+const inputTitle = profileEditForm.querySelector('.pop-up__input_type_title');
+const inputSubtitle = profileEditForm.querySelector('.pop-up__input_type_subtitle');
+
+document.querySelector('.profile__modify-button').addEventListener('click', () => {
+  profileFormValidator.resetError();
 
   const { name, description } = userInfo.getUserInfo();
 
   inputTitle.value = name;
   inputSubtitle.value = description;
-});
 
-document.querySelector('.profile__modify-button').addEventListener('click', () => profilePopUp.open());
+  profileFormValidator.toggleButtonState();
+
+  profilePopUp.open();
+});
 
 // show image pop up
 const { popUpSelector, popUpImageSelector, popUpImageCaptionSelector } = galleryConfig;
@@ -50,10 +62,21 @@ const gallery = new Section({
 
 gallery.renderItems();
 
-const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add', ({ name, source: link }) => {
-  gallery.addItem(new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard())
-});
+const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
+  ({ name, source: link }) => {
+    gallery.addItem(new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard())
+  }
+);
+
+const galleryAddForm = document.querySelector('.pop-up_type_gallery-add').querySelector('.pop-up__form');
+
+const addPostFormValidator = new FormValidator(galleryAddForm, validationConfig);
+addPostFormValidator.enableValidation()
 
 galleryAddPopUp.setEventListeners();
 
-document.querySelector('.profile__add-button').addEventListener('click', () => galleryAddPopUp.open());
+document.querySelector('.profile__add-button').addEventListener('click', () => {
+  addPostFormValidator.resetError();
+  addPostFormValidator.toggleButtonState();
+  galleryAddPopUp.open()
+});
