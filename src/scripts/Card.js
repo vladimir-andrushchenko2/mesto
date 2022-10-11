@@ -25,30 +25,23 @@ export default class Card {
   _setEventListeners() {
     this._element.querySelector(this._config.cardLikeButtonSelector).addEventListener('click', (event) => this._handleLike(event));
     this._element.querySelector(this._config.cardDeleteButtonSelector).addEventListener('click', (event) => this._handleDelete(event));
+
+    this._picture.addEventListener('click', () => {
+      this._handleCardClick(this._link, this._name);
+    });
   }
 
   generateCard() {
     this._element = this._getTemplate();
+    this._picture = this._element.querySelector(this._config.cardPictureSelector);
 
     this._setEventListeners();
 
-    const picture = this._element.querySelector(this._config.cardPictureSelector);
-    picture.src = this._link;
-    picture.alt = this._name;
+    this._picture.src = this._link;
+    this._picture.alt = this._name;
 
-    const caption = this._element.querySelector(this._config.cardCaptionSelector);
-    caption.textContent = this._name;
-
-    picture.addEventListener('error', () => {
-      const placeholder = document.createElement('div');
-      placeholder.classList.add('profile__picture-placeholder');
-      picture.after(placeholder);
-      picture.remove();
-    })
-
-    picture.addEventListener('click', () => {
-      this._handleCardClick(this._link, this._name);
-    });
+    this._caption = this._element.querySelector(this._config.cardCaptionSelector);
+    this._caption.textContent = this._name;
 
     return this._element;
   }
