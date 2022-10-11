@@ -1,12 +1,12 @@
 import '../pages/index.css';
 import { initialCards } from './cards.js'
-import Card from './Card.js'
-import PopupWithForm from './PopupWithForm.js';
+import Card from './components/Card.js'
+import PopupWithForm from './components/PopupWithForm.js';
 import { validationConfig, titleSelector, subtitleSelector, galleryConfig } from './constants.js';
-import Section from './Section.js';
-import UserInfo from './UserInfo.js';
-import PopupWithImage from './PopupWithImage.js';
-import FormValidator from './FormValidator.js';
+import Section from './components/Section.js';
+import UserInfo from './components/UserInfo.js';
+import PopupWithImage from './components/PopupWithImage';
+import FormValidator from './components/FormValidator.js';
 
 // profile pop-up
 const userInfo = new UserInfo(titleSelector, subtitleSelector);
