@@ -2,10 +2,10 @@ import { isLeftMouseClick } from './utilities.js';
 export default class Popup {
   constructor(popupSelector) {
     this._element = document.querySelector(popupSelector);
+    this.escapeButtonHandler = this._handleEscClose.bind(this);
   }
 
   open() {
-    this.escapeButtonHandler = this._handleEscClose.bind(this);
     document.addEventListener('keydown', this.escapeButtonHandler);
     this._element.classList.add('pop-up_opened');
   }
