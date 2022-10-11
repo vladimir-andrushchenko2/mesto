@@ -52,10 +52,11 @@ const handleOpenPictureInPopUp = (link, name) => {
   showImagePopUp.open(link, name);
 }
 
+const generateCard = ({ name, link }) => new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard();
+
 const gallery = new Section({
   data: initialCards, renderer: (item) => {
-    const card = new Card(item, galleryConfig, handleOpenPictureInPopUp).generateCard();
-    gallery.addItem(card);
+    gallery.addItem(generateCard(item));
   }
 },
   '.gallery__items');
@@ -64,7 +65,7 @@ gallery.renderItems();
 
 const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
   ({ name, source: link }) => {
-    gallery.addItem(new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard())
+    gallery.addItem(generateCard({ name, link }));
   }
 );
 
