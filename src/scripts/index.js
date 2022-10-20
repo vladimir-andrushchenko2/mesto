@@ -1,19 +1,25 @@
 import '../pages/index.css';
-import { initialCards } from './cards.js'
 import Card from './components/Card.js'
 import PopupWithForm from './components/PopupWithForm.js';
-import { validationConfig, titleSelector, subtitleSelector, galleryConfig } from './constants.js';
+import { validationConfig, titleSelector, subtitleSelector, galleryConfig, profilePictureSelector } from './constants.js';
 import Section from './components/Section.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator.js';
+import { api } from './components/Api.js';
 
 // profile pop-up
-const userInfo = new UserInfo(titleSelector, subtitleSelector);
+const userInfo = new UserInfo(titleSelector, subtitleSelector, profilePictureSelector);
+
+api.getUserInfo()
+  .then(({ name, about, avatar }) => userInfo.setUserInfo({ name, description: about, avatarLink: avatar }))
+  .catch(err => { throw new Error(err) });
 
 const profilePopUp = new PopupWithForm('.pop-up_type_profile',
   ({ title, subtitle }) => {
-    userInfo.setUserInfo({ name: title, description: subtitle });
+    api.patchUserInfo(title, subtitle)
+      .then(({ name, about }) => userInfo.setUserInfo({ name, description: about }))
+      .catch(err => { throw new Error(err) });
   }
 );
 
@@ -54,18 +60,15 @@ const handleOpenPictureInPopUp = (link, name) => {
 
 const generateCard = ({ name, link }) => new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard();
 
-const gallery = new Section({
-  data: initialCards, renderer: (item) => {
-    gallery.addItem(generateCard(item));
-  }
-},
-  '.gallery__items');
+api.getInitialCards()
+  .then(initialCards => new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems())
+  .catch(err => { throw new Error(err); });
 
-gallery.renderItems();
+const gallery = new Section({ data: [], renderer: () => { } }, '.gallery__items');
 
 const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
   ({ name, source: link }) => {
-    gallery.addItem(generateCard({ name, link }));
+    api.postCard(name, link).then(({ name, link }) => gallery.addItem(generateCard({ name, link }))).catch(err => { throw new Error(err) });
   }
 );
 

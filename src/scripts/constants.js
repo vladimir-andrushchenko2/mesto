@@ -1,5 +1,6 @@
 export const titleSelector = '.profile__title-text';
 export const subtitleSelector = '.profile__subtitle';
+export const profilePictureSelector = '.profile__picture';
 
 export const galleryConfig = {
   cardTemplateSelector: '#card',
