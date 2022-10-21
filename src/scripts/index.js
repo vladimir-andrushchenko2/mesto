@@ -12,11 +12,12 @@ import { api } from './components/Api.js';
 // сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete
 let deleteConfirmationPopUp;
 
-const onDelete = (cardId, ownerId, removeElement) => {
+const onDelete = (cardId, removeElement) => {
   deleteConfirmationPopUp = new PopupWithForm('.pop-up_type_delete-card', () => {
-    console.log(cardId, ' ', ownerId);
-    removeElement();
-    deleteConfirmationPopUp.removeEventListeners();
+    api.deleteCard(cardId).then(res => {
+      removeElement();
+      deleteConfirmationPopUp.removeEventListeners();
+    }).catch(err => console.error(err));
   });
 
   deleteConfirmationPopUp.setEventListeners();
@@ -40,7 +41,7 @@ const handleOpenPictureInPopUp = (link, name) => {
 // *** Логика создания карточки
 const makeCardGeneratorCard = (clientId) => (cardData) => new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete).generateCard();
 
-// сюда я сохраню функцию для генерации карт после пулучения _id клиента от сервера
+// сюда я сохраню функцию для генерации карт после пoлучения _id клиента от сервера
 let generateCard;
 
 // при определении понадобится функция generateCard поэтому определяю после оплучения _id клиента который нужен для makeCardGenerator
@@ -69,7 +70,7 @@ api.getUserInfo()
 
     galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
       ({ name, source: link }) => {
-        api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => { throw new Error(err) });
+        api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => console.error(err));
       }
     );
 
@@ -88,7 +89,7 @@ const profilePopUp = new PopupWithForm('.pop-up_type_profile',
   ({ title, subtitle }) => {
     api.patchUserInfo(title, subtitle)
       .then(({ name, about }) => userInfo.setUserInfo({ name, description: about }))
-      .catch(err => { throw new Error(err) });
+      .catch(err => console.error(err));
   }
 );
 

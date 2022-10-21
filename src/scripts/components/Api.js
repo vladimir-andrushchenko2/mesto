@@ -35,6 +35,10 @@ class Api {
   postCard(name, link) {
     return this._makeRequest('/cards', 'POST', { name, link });
   }
+
+  deleteCard(cardId) {
+    return this._makeRequest(`/cards/${cardId}`, 'DELETE');
+  }
 }
 
 export const api = new Api({

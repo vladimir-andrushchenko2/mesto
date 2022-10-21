@@ -23,7 +23,7 @@ export default class Card {
   }
 
   _handleDelete() {
-    this._onDelete(this._cardId, this._ownerId, () => {
+    this._onDelete(this._cardId, () => {
       this._element.remove();
       this._element = null;
     });
