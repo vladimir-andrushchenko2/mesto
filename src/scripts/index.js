@@ -8,6 +8,10 @@ import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator.js';
 import { api } from './components/Api.js';
 
+
+// *** Логика установки лайка
+const onLike = (cardId) => api.putCardLike(cardId).catch(err => console.error(err));
+
 // *** Логика удаления карточки
 // сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete
 let deleteConfirmationPopUp;
@@ -39,7 +43,8 @@ const handleOpenPictureInPopUp = (link, name) => {
 }
 
 // *** Логика создания карточки
-const makeCardGeneratorCard = (clientId) => (cardData) => new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete).generateCard();
+const makeCardGeneratorCard = (clientId) => (cardData) =>
+  new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete, onLike).generateCard();
 
 // сюда я сохраню функцию для генерации карт после пoлучения _id клиента от сервера
 let generateCard;
@@ -66,7 +71,13 @@ api.getUserInfo()
   })
   .then(initialCards => {
     // теперь когда generateCard готов можно заполнять секцию, это нужно для того чтобы у карточек созданных не клиентом не отображалась кнопка удаления
-    new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems();
+    new Section({
+      data: initialCards,
+      renderer: item => {
+        console.log(item)
+        gallery.addItem(generateCard(item));
+      }
+    }, '.gallery__items').renderItems();
 
     galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
       ({ name, source: link }) => {
