@@ -58,7 +58,7 @@ const handleOpenPictureInPopUp = (link, name) => {
   showImagePopUp.open(link, name);
 }
 
-const generateCard = ({ name, link }) => new Card({ name, link }, galleryConfig, handleOpenPictureInPopUp).generateCard();
+const generateCard = (data) => new Card(data, galleryConfig, handleOpenPictureInPopUp).generateCard();
 
 api.getInitialCards()
   .then(initialCards => new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems())
@@ -68,7 +68,7 @@ const gallery = new Section({ data: [], renderer: () => { } }, '.gallery__items'
 
 const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
   ({ name, source: link }) => {
-    api.postCard(name, link).then(({ name, link }) => gallery.addItem(generateCard({ name, link }))).catch(err => { throw new Error(err) });
+    api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => { throw new Error(err) });
   }
 );
 
