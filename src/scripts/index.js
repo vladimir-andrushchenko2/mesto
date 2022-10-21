@@ -1,20 +1,89 @@
 import '../pages/index.css';
 import Card from './components/Card.js'
 import PopupWithForm from './components/PopupWithForm.js';
-import { validationConfig, titleSelector, subtitleSelector, galleryConfig, profilePictureSelector } from './constants.js';
+import { galleryAddForm, profileEditForm, validationConfig, titleSelector, subtitleSelector, galleryConfig, profilePictureSelector } from './constants.js';
 import Section from './components/Section.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator.js';
 import { api } from './components/Api.js';
 
+// *** Логика удаления карточки
+// сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete
+let deleteConfirmationPopUp;
+
+const onDelete = (cardId, ownerId, removeElement) => {
+  deleteConfirmationPopUp = new PopupWithForm('.pop-up_type_delete-card', () => {
+    console.log(cardId, ' ', ownerId);
+    removeElement();
+    deleteConfirmationPopUp.removeEventListeners();
+  });
+
+  deleteConfirmationPopUp.setEventListeners();
+
+  deleteConfirmationPopUp.open();
+}
+
+// *** Логика открытия увеличенной карточки
+// show image pop up
+const { popUpSelector, popUpImageSelector, popUpImageCaptionSelector } = galleryConfig;
+
+const showImagePopUp = new PopupWithImage(popUpSelector, popUpImageSelector, popUpImageCaptionSelector);
+
+showImagePopUp.setEventListeners();
+
+// gallery pop-up
+const handleOpenPictureInPopUp = (link, name) => {
+  showImagePopUp.open(link, name);
+}
+
+// *** Логика создания карточки
+const makeCardGeneratorCard = (clientId) => (cardData) => new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete).generateCard();
+
+// сюда я сохраню функцию для генерации карт после пулучения _id клиента от сервера
+let generateCard;
+
+// при определении понадобится функция generateCard поэтому определяю после оплучения _id клиента который нужен для makeCardGenerator
+let galleryAddPopUp;
+
+const gallery = new Section({ data: [], renderer: () => { } }, '.gallery__items');
+
+const addPostFormValidator = new FormValidator(galleryAddForm, validationConfig);
+addPostFormValidator.enableValidation()
+
 // profile pop-up
 const userInfo = new UserInfo(titleSelector, subtitleSelector, profilePictureSelector);
 
+// сначала получаю данные о клиенте а потом создаю карточки для определения какие карты можно удалять а какие нет
 api.getUserInfo()
-  .then(({ name, about, avatar }) => userInfo.setUserInfo({ name, description: about, avatarLink: avatar }))
-  .catch(err => { throw new Error(err) });
+  .then(({ name, about, avatar, _id }) => {
+    userInfo.setUserInfo({ name, description: about, avatarLink: avatar });
+    // определяю функцию генерации карт здесь поскльку для рендеринга карт нужнен айди пользователя
+    generateCard = makeCardGeneratorCard(_id);
 
+    return api.getInitialCards();
+  })
+  .then(initialCards => {
+    // теперь когда generateCard готов можно заполнять секцию, это нужно для того чтобы у карточек созданных не клиентом не отображалась кнопка удаления
+    new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems();
+
+    galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
+      ({ name, source: link }) => {
+        api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => { throw new Error(err) });
+      }
+    );
+
+    galleryAddPopUp.setEventListeners();
+
+    document.querySelector('.profile__add-button').addEventListener('click', () => {
+      addPostFormValidator.resetError();
+      addPostFormValidator.toggleButtonState();
+      galleryAddPopUp.open()
+    });
+  })
+  .catch(err => { console.error(err); localStorage.setItem('err', err) });
+
+// *** Изменение данных о клиенте
 const profilePopUp = new PopupWithForm('.pop-up_type_profile',
   ({ title, subtitle }) => {
     api.patchUserInfo(title, subtitle)
@@ -24,8 +93,6 @@ const profilePopUp = new PopupWithForm('.pop-up_type_profile',
 );
 
 profilePopUp.setEventListeners();
-
-const profileEditForm = document.querySelector('.pop-up_type_profile').querySelector('.pop-up__form');
 
 const profileFormValidator = new FormValidator(profileEditForm, validationConfig);
 profileFormValidator.enableValidation();
@@ -46,55 +113,5 @@ document.querySelector('.profile__modify-button').addEventListener('click', () =
   profilePopUp.open();
 });
 
-// show image pop up
-const { popUpSelector, popUpImageSelector, popUpImageCaptionSelector } = galleryConfig;
 
-const showImagePopUp = new PopupWithImage(popUpSelector, popUpImageSelector, popUpImageCaptionSelector);
 
-showImagePopUp.setEventListeners();
-
-// gallery pop-up
-const handleOpenPictureInPopUp = (link, name) => {
-  showImagePopUp.open(link, name);
-}
-
-let deleteConfirmationPopUp;
-
-const onDelete = (cardId, ownerId, removeElement) => {
-  deleteConfirmationPopUp = new PopupWithForm('.pop-up_type_delete-card', () => {
-    console.log(cardId, ' ', ownerId);
-    removeElement();
-    deleteConfirmationPopUp.removeEventListeners();
-  });
-
-  deleteConfirmationPopUp.setEventListeners();
-
-  deleteConfirmationPopUp.open();
-}
-
-const generateCard = (data) => new Card(data, galleryConfig, handleOpenPictureInPopUp, onDelete).generateCard();
-
-api.getInitialCards()
-  .then(initialCards => new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems())
-  .catch(err => { throw new Error(err); });
-
-const gallery = new Section({ data: [], renderer: () => { } }, '.gallery__items');
-
-const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
-  ({ name, source: link }) => {
-    api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => { throw new Error(err) });
-  }
-);
-
-const galleryAddForm = document.querySelector('.pop-up_type_gallery-add').querySelector('.pop-up__form');
-
-const addPostFormValidator = new FormValidator(galleryAddForm, validationConfig);
-addPostFormValidator.enableValidation()
-
-galleryAddPopUp.setEventListeners();
-
-document.querySelector('.profile__add-button').addEventListener('click', () => {
-  addPostFormValidator.resetError();
-  addPostFormValidator.toggleButtonState();
-  galleryAddPopUp.open()
-});

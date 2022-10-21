@@ -1,6 +1,9 @@
 export const titleSelector = '.profile__title-text';
 export const subtitleSelector = '.profile__subtitle';
 export const profilePictureSelector = '.profile__picture';
+export const profileEditForm = document.querySelector('.pop-up_type_profile').querySelector('.pop-up__form');
+export const galleryAddForm = document.querySelector('.pop-up_type_gallery-add').querySelector('.pop-up__form');
+
 
 export const galleryConfig = {
   cardTemplateSelector: '#card',
