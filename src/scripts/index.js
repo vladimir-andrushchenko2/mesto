@@ -58,7 +58,21 @@ const handleOpenPictureInPopUp = (link, name) => {
   showImagePopUp.open(link, name);
 }
 
-const generateCard = (data) => new Card(data, galleryConfig, handleOpenPictureInPopUp).generateCard();
+let deleteConfirmationPopUp;
+
+const onDelete = (cardId, ownerId, removeElement) => {
+  deleteConfirmationPopUp = new PopupWithForm('.pop-up_type_delete-card', () => {
+    console.log(cardId, ' ', ownerId);
+    removeElement();
+    deleteConfirmationPopUp.removeEventListeners();
+  });
+
+  deleteConfirmationPopUp.setEventListeners();
+
+  deleteConfirmationPopUp.open();
+}
+
+const generateCard = (data) => new Card(data, galleryConfig, handleOpenPictureInPopUp, onDelete).generateCard();
 
 api.getInitialCards()
   .then(initialCards => new Section({ data: initialCards, renderer: item => gallery.addItem(generateCard(item)) }, '.gallery__items').renderItems())
