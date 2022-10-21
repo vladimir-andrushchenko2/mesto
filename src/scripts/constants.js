@@ -12,7 +12,8 @@ export const galleryConfig = {
   popUpImageSelector: '.pop-up__image',
   popUpImageCaptionSelector: '.pop-up__image-caption',
   cardLikeButtonSelector: '.card__like-button',
-  cardDeleteButtonSelector: '.card__delete-button'
+  cardDeleteButtonSelector: '.card__delete-button',
+  likeCountSelector: '.card__likes'
 };
 
 export const validationConfig = {

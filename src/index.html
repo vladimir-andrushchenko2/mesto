@@ -10,6 +10,16 @@
 
 <body class="root">
 
+  <div class="pop-up pop-up_type_delete-card pop-up_opened">
+    <div class="pop-up__container">
+      <button type="button" class="button pop-up__close-btn" aria-label="Закрыть"></button>
+      <form name="deleteCardForm" action="/cards/cardId" method="delete" class="pop-up__form" novalidate>
+        <h2 class="pop-up__header">Вы уверены?</h2>
+        <input type="submit" class="pop-up__save-button pop-up__save-button_type_delete" value="Да">
+      </form>
+    </div>
+  </div>
+
   <div class="pop-up pop-up_type_profile">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn" aria-label="Закрыть"></button>
@@ -68,11 +78,11 @@
         <img class="profile__picture" src="<%=require('./images/profile-picture.jpg')%>" alt="заставка профиля">
 
         <div class="profile__title">
-          <h1 class="profile__title-text">Жак-Ив Кусто</h1>
+          <h1 class="profile__title-text"></h1>
           <button type="button" class="button profile__modify-button" aria-label="Изменить профиль"></button>
         </div>
 
-        <p class="profile__subtitle">Исследователь океана</p>
+        <p class="profile__subtitle"></p>
 
         <button type="button" class="button profile__add-button" aria-label="Изменить профиль"></button>
       </section>
@@ -94,7 +104,10 @@
       <button type="button" class="button card__delete-button"></button>
       <div class="card__info">
         <h2 class="card__caption"></h2>
-        <button type="button" class="button card__like-button"></button>
+        <div class="">
+          <button type="button" class="button card__like-button"></button>
+          <div class="card__likes"></div>
+        </div>
       </div>
     </li>
   </template>
