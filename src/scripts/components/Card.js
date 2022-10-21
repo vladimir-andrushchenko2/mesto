@@ -1,8 +1,11 @@
 export default class Card {
-  constructor({ name, link }, config, handleCardClick) {
+  constructor({ name, link, likes, _id, owner }, config, handleCardClick) {
+    this._ownerId = owner._id;
+    this._cardId = _id;
     this._name = name;
     this._link = link;
     this._config = config;
+    this._likesCount = likes.length;
     this._handleCardClick = handleCardClick;
   }
 
@@ -17,11 +20,10 @@ export default class Card {
     event.target.classList.toggle(this._config.cardLikeButtonActiveClass);
   }
 
-  _handleDelete(event) {
+  _handleDelete() {
     this._element.remove();
     this._element = null;
   }
-
   _setEventListeners() {
     this._element.querySelector(this._config.cardLikeButtonSelector).addEventListener('click', (event) => this._handleLike(event));
     this._element.querySelector(this._config.cardDeleteButtonSelector).addEventListener('click', (event) => this._handleDelete(event));
@@ -42,6 +44,9 @@ export default class Card {
 
     this._caption = this._element.querySelector(this._config.cardCaptionSelector);
     this._caption.textContent = this._name;
+
+    this._likesElement = this._element.querySelector(this._config.likeCountSelector);
+    this._likesElement.textContent = this._likesCount;
 
     return this._element;
   }
