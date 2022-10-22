@@ -22,18 +22,22 @@ export default class Card {
 
   _handleLike(event) {
     if (event.target.classList.contains(this._config.cardLikeButtonActiveClass)) {
-      this._onRemoveLike(this._cardId).then(res => {
-        this._likes = res.likes;
-        event.target.classList.remove(this._config.cardLikeButtonActiveClass)
-        this._likesElement.textContent = this._likes.length;
-      });
+      this._onRemoveLike(this._cardId)
+        .then(res => {
+          this._likes = res.likes;
+          event.target.classList.remove(this._config.cardLikeButtonActiveClass)
+          this._likesElement.textContent = this._likes.length;
+        })
+        .catch(err => console.error(err));
 
     } else {
-      this._onLike(this._cardId).then(res => {
-        this._likes = res.likes;
-        event.target.classList.add(this._config.cardLikeButtonActiveClass)
-        this._likesElement.textContent = this._likes.length;
-      });
+      this._onLike(this._cardId)
+        .then(res => {
+          this._likes = res.likes;
+          event.target.classList.add(this._config.cardLikeButtonActiveClass)
+          this._likesElement.textContent = this._likes.length;
+        })
+        .catch(err => console.error(err));
     }
   }
 
