@@ -1,0 +1,19 @@
+.profile__picture-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.3s;
+  background-image: url(../../../ui-elements/edit-profile-picture-symbol.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.profile__picture-overlay:hover {
+  opacity: 1;
+}

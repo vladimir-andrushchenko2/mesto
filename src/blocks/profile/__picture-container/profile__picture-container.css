@@ -1,0 +1,5 @@
+.profile__picture-container {
+  max-width: max-content;
+  margin: auto;
+  position: relative;
+}

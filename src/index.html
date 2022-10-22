@@ -75,9 +75,11 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__picture" src="<%=require('./images/profile-picture-placeholder.jpg')%>"
-          alt="заставка профиля">
-
+        <div class="profile__picture-container">
+          <img class="profile__picture" src="<%=require('./images/profile-picture-placeholder.jpg')%>"
+            alt="заставка профиля">
+          <div class="profile__picture-overlay"></div>
+        </div>
         <div class="profile__title">
           <h1 class="profile__title-text"></h1>
           <button type="button" class="button profile__modify-button" aria-label="Изменить профиль"></button>
