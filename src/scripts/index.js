@@ -12,6 +12,8 @@ import { api } from './components/Api.js';
 // *** Логика установки лайка
 const onLike = (cardId) => api.putCardLike(cardId).catch(err => console.error(err));
 
+const onRemoveLike = (cardId) => api.deleteCardLike(cardId).catch(err => console.error(err));
+
 // *** Логика удаления карточки
 // сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete
 let deleteConfirmationPopUp;
@@ -44,7 +46,7 @@ const handleOpenPictureInPopUp = (link, name) => {
 
 // *** Логика создания карточки
 const makeCardGeneratorCard = (clientId) => (cardData) =>
-  new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete, onLike).generateCard();
+  new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete, onLike, onRemoveLike).generateCard();
 
 // сюда я сохраню функцию для генерации карт после пoлучения _id клиента от сервера
 let generateCard;
@@ -74,7 +76,6 @@ api.getUserInfo()
     new Section({
       data: initialCards,
       renderer: item => {
-        console.log(item)
         gallery.addItem(generateCard(item));
       }
     }, '.gallery__items').renderItems();

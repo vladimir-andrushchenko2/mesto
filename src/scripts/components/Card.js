@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ name, link, likes, _id, owner, clientId }, config, handleCardClick, onDelete, onLike) {
+  constructor({ name, link, likes, _id, owner, clientId }, config, handleCardClick, onDelete, onLike, onRemoveLike) {
     this._clientId = clientId;
     this._ownerId = owner._id;
     this._cardId = _id;
@@ -10,6 +10,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._onDelete = onDelete;
     this._onLike = onLike;
+    this._onRemoveLike = onRemoveLike
   }
 
   _getTemplate() {
@@ -20,9 +21,20 @@ export default class Card {
   }
 
   _handleLike(event) {
-    this._onLike(this._cardId);
-    event.target.classList.toggle(this._config.cardLikeButtonActiveClass);
-    this._likesElement.textContent = this._likes.length + 1;
+    if (event.target.classList.contains(this._config.cardLikeButtonActiveClass)) {
+      this._onRemoveLike(this._cardId).then(res => {
+        this._likes = res.likes;
+        event.target.classList.remove(this._config.cardLikeButtonActiveClass)
+        this._likesElement.textContent = this._likes.length;
+      });
+
+    } else {
+      this._onLike(this._cardId).then(res => {
+        this._likes = res.likes;
+        event.target.classList.add(this._config.cardLikeButtonActiveClass)
+        this._likesElement.textContent = this._likes.length;
+      });
+    }
   }
 
   _handleDelete() {
