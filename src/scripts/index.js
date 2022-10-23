@@ -93,7 +93,15 @@ api.getUserInfo()
 
     galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
       ({ name, source: link }) => {
-        api.postCard(name, link).then((data) => gallery.addItem(generateCard(data))).catch(err => console.error(err));
+        const button = galleryAddForm.querySelector('.pop-up__save-button');
+        button.value = 'Сохранинение...';
+
+        api.postCard(name, link)
+          .then((data) => gallery.addItem(generateCard(data)))
+          .catch(err => console.error(err))
+          .finally(() => {
+            button.value = 'Сохранить';
+          });
       }
     );
 
@@ -110,9 +118,15 @@ api.getUserInfo()
 // *** Изменение данных о клиенте
 const profilePopUp = new PopupWithForm('.pop-up_type_profile',
   ({ title, subtitle }) => {
+    const button = profileEditForm.querySelector('.pop-up__save-button');
+    button.value = 'Сохранинение...';
+
     api.patchUserInfo(title, subtitle)
       .then(({ name, about }) => userInfo.setUserInfo({ name, description: about }))
-      .catch(err => console.error(err));
+      .catch(err => console.error(err))
+      .finally(() => {
+        button.value = 'Сохранить';
+      });
   }
 );
 
@@ -134,11 +148,19 @@ document.querySelector('.profile__modify-button').addEventListener('click', () =
   profilePopUp.open();
 });
 
+// изменение аватарки
 const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-picture',
   ({ source }) => {
+    const button = editPictureForm.querySelector('.pop-up__save-button');
+    button.value = 'Сохранинение...';
+
     api.patchUserAvatar(source).then(data => {
       userInfo.setUserInfo({ avatarLink: data.avatar })
-    }).then(err => console.error(err));
+    })
+      .catch(err => console.error(err))
+      .finally(() => {
+        button.value = 'Сохранить';
+      });
   })
 
 editProfilePicturePopUp.setEventListeners();
