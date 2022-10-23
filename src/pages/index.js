@@ -1,4 +1,4 @@
-import '../pages/index.css';
+import './index.css';
 import {
   galleryAddForm,
   profileEditForm,
@@ -10,14 +10,14 @@ import {
   inputTitle,
   inputSubtitle,
   editPictureForm
-} from './constants.js';
-import Card from './components/Card.js'
-import Section from './components/Section.js';
-import UserInfo from './components/UserInfo.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage';
-import FormValidator from './components/FormValidator.js';
-import Api from './components/Api.js';
+} from '../utils/constants.js';
+import Card from '../components/Card.js'
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage';
+import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api.js';
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
