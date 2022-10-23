@@ -17,8 +17,15 @@ import UserInfo from './components/UserInfo.js';
 import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator.js';
-import { api } from './components/Api.js';
+import Api from './components/Api.js';
 
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  headers: {
+    authorization: '701d7c23-a5ed-4bcd-aa15-7b4714e01efc',
+    'Content-Type': 'application/json'
+  }
+});
 
 // *** Логика установки лайка
 const onLike = (cardId) => api.putCardLike(cardId);

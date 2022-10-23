@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
@@ -56,11 +56,3 @@ class Api {
     return this._makeRequest(`/users/me/avatar`, 'PATCH', { avatar: avatarUrl });
   }
 }
-
-export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
-  headers: {
-    authorization: '701d7c23-a5ed-4bcd-aa15-7b4714e01efc',
-    'Content-Type': 'application/json'
-  }
-});
