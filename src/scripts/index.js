@@ -33,8 +33,7 @@ const onLike = (cardId) => api.putCardLike(cardId);
 const onRemoveLike = (cardId) => api.deleteCardLike(cardId);
 
 // *** Логика удаления карточки
-// сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete
-let onDeleteCallbackForOnConfirmDelete = () => console.log('This function is a placeholder and should be redefined in onDelete');
+let onDeleteCallbackForOnConfirmDelete = () => console.log('This function is a placeholder and should be redefined in onDelete argument for Card constructor');
 
 const deleteConfirmationPopUp = new PopupWithForm('.pop-up_type_delete-card', () => {
   onDeleteCallbackForOnConfirmDelete();
