@@ -21,9 +21,9 @@ import { api } from './components/Api.js';
 
 
 // *** Логика установки лайка
-const onLike = (cardId) => api.putCardLike(cardId).catch(err => console.error(err));
+const onLike = (cardId) => api.putCardLike(cardId);
 
-const onRemoveLike = (cardId) => api.deleteCardLike(cardId).catch(err => console.error(err));
+const onRemoveLike = (cardId) => api.deleteCardLike(cardId);
 
 // *** Логика удаления карточки
 // сюда я буду записывать попап удаления чтоб он не исчез после выполения функции onDelete

@@ -22,7 +22,6 @@ class Api {
 
         return Promise.reject(res.status);
       })
-      .catch(err => Promise.reject(`Ошибка при методе ${method} по URI ${this._baseUrl + path}\nС телом ${body}\n Caught: ${err}`));
   }
 
   getInitialCards() {
