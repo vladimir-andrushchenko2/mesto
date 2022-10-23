@@ -47,6 +47,10 @@ class Api {
   deleteCardLike(cardId) {
     return this._makeRequest(`/cards/${cardId}/likes`, 'DELETE')
   }
+
+  patchUserAvatar(avatarUrl) {
+    return this._makeRequest(`/users/me/avatar`, 'PATCH', { avatar: avatarUrl });
+  }
 }
 
 export const api = new Api({

@@ -136,7 +136,9 @@ document.querySelector('.profile__modify-button').addEventListener('click', () =
 
 const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-picture',
   ({ source }) => {
-    console.log(source)
+    api.patchUserAvatar(source).then(data => {
+      userInfo.setUserInfo({ avatarLink: data.avatar })
+    }).then(err => console.error(err));
   })
 
 editProfilePicturePopUp.setEventListeners();
