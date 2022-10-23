@@ -41,6 +41,8 @@ const onDelete = (cardId, removeElement) => {
     api.deleteCard(cardId).then(res => {
       removeElement();
       deleteConfirmationPopUp.removeEventListeners();
+
+      deleteConfirmationPopUp.close();
     }).catch(err => console.error(err));
   });
 
@@ -108,6 +110,7 @@ api.getUserInfo()
           .catch(err => console.error(err))
           .finally(() => {
             button.value = 'Сохранить';
+            galleryAddPopUp.close();
           });
       }
     );
@@ -133,6 +136,7 @@ const profilePopUp = new PopupWithForm('.pop-up_type_profile',
       .catch(err => console.error(err))
       .finally(() => {
         button.value = 'Сохранить';
+        profilePopUp.close();
       });
   }
 );
@@ -167,6 +171,7 @@ const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-pic
       .catch(err => console.error(err))
       .finally(() => {
         button.value = 'Сохранить';
+        editProfilePicturePopUp.close();
       });
   })
 
