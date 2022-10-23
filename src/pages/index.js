@@ -27,6 +27,14 @@ const api = new Api({
   }
 });
 
+const renderLoading = (button, isLoading) => {
+  if (isLoading) {
+    button.value = 'Сохранение...';
+  } else {
+    button.value = 'Сохранить';
+  }
+}
+
 // *** Логика установки лайка
 const onLike = (cardId) => api.putCardLike(cardId);
 
@@ -83,13 +91,13 @@ addPostFormValidator.enableValidation()
 const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
   ({ name, source: link }) => {
     const button = galleryAddForm.querySelector('.pop-up__save-button');
-    button.value = 'Сохранение...';
+    renderLoading(button, true);
 
     api.postCard(name, link)
       .then((data) => gallery.addItem(generateCard(data)))
       .catch(err => console.error(err))
       .finally(() => {
-        button.value = 'Сохранить';
+        renderLoading(button, false);
         galleryAddPopUp.close();
       });
   }
@@ -118,13 +126,13 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const profilePopUp = new PopupWithForm('.pop-up_type_profile',
   ({ title, subtitle }) => {
     const button = profileEditForm.querySelector('.pop-up__save-button');
-    button.value = 'Сохранинение...';
+    renderLoading(button, true)
 
     api.patchUserInfo(title, subtitle)
       .then(({ name, about }) => userInfo.setUserInfo({ name, description: about }))
       .catch(err => console.error(err))
       .finally(() => {
-        button.value = 'Сохранить';
+        renderLoading(button, false)
         profilePopUp.close();
       });
   }
@@ -152,14 +160,14 @@ document.querySelector('.profile__modify-button').addEventListener('click', () =
 const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-picture',
   ({ source }) => {
     const button = editPictureForm.querySelector('.pop-up__save-button');
-    button.value = 'Сохранинение...';
+    renderLoading(button, true);
 
     api.patchUserAvatar(source).then(data => {
       userInfo.setUserInfo({ avatarLink: data.avatar })
     })
       .catch(err => console.error(err))
       .finally(() => {
-        button.value = 'Сохранить';
+        renderLoading(button, false);
         editProfilePicturePopUp.close();
       });
   })
