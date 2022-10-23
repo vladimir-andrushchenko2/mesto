@@ -60,6 +60,21 @@
     </div>
   </div>
 
+  <div class="pop-up pop-up_type_edit-profile-picture">
+    <div class="pop-up__container">
+      <button type="button" class="button pop-up__close-btn" aria-label="Закрыть"></button>
+      <form name="galleryAddCardForm" action="/" method="get" class="pop-up__form" novalidate>
+        <h2 class="pop-up__header">Обновить аватар</h2>
+        <label class="pop-up__form-field">
+          <input id="update-profile-picture-input" type="url" name="source"
+            class="pop-up__input pop-up__input_type_picture-source" placeholder="Ссылка на картинку" required>
+          <span class="pop-up__input-error update-profile-picture-input-error"></span>
+        </label>
+        <input type="submit" class="pop-up__save-button" value="Сохранить">
+      </form>
+    </div>
+  </div>
+
   <div class="pop-up pop-up_type_show-card pop-up_darker-background">
     <div class="pop-up__container">
       <button type="button" class="button pop-up__close-btn" aria-label="Закрыть"></button>

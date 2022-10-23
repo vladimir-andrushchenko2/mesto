@@ -3,7 +3,9 @@ export const subtitleSelector = '.profile__subtitle';
 export const profilePictureSelector = '.profile__picture';
 export const profileEditForm = document.querySelector('.pop-up_type_profile').querySelector('.pop-up__form');
 export const galleryAddForm = document.querySelector('.pop-up_type_gallery-add').querySelector('.pop-up__form');
-
+export const editPictureForm = document.querySelector('.pop-up_type_edit-profile-picture').querySelector('.pop-up__form');
+export const inputTitle = profileEditForm.querySelector('.pop-up__input_type_title');
+export const inputSubtitle = profileEditForm.querySelector('.pop-up__input_type_subtitle');
 
 export const galleryConfig = {
   cardTemplateSelector: '#card',

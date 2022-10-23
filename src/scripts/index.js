@@ -1,7 +1,18 @@
 import '../pages/index.css';
 import Card from './components/Card.js'
 import PopupWithForm from './components/PopupWithForm.js';
-import { galleryAddForm, profileEditForm, validationConfig, titleSelector, subtitleSelector, galleryConfig, profilePictureSelector } from './constants.js';
+import {
+  galleryAddForm,
+  profileEditForm,
+  validationConfig,
+  titleSelector,
+  subtitleSelector,
+  galleryConfig,
+  profilePictureSelector,
+  inputTitle,
+  inputSubtitle,
+  editPictureForm
+} from './constants.js';
 import Section from './components/Section.js';
 import UserInfo from './components/UserInfo.js';
 import PopupWithImage from './components/PopupWithImage';
@@ -110,9 +121,6 @@ profilePopUp.setEventListeners();
 const profileFormValidator = new FormValidator(profileEditForm, validationConfig);
 profileFormValidator.enableValidation();
 
-const inputTitle = profileEditForm.querySelector('.pop-up__input_type_title');
-const inputSubtitle = profileEditForm.querySelector('.pop-up__input_type_subtitle');
-
 document.querySelector('.profile__modify-button').addEventListener('click', () => {
   profileFormValidator.resetError();
 
@@ -126,5 +134,18 @@ document.querySelector('.profile__modify-button').addEventListener('click', () =
   profilePopUp.open();
 });
 
+const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-picture',
+  ({ source }) => {
+    console.log(source)
+  })
 
+editProfilePicturePopUp.setEventListeners();
 
+const profileEditPictureFormValidator = new FormValidator(editPictureForm, validationConfig);
+profileEditPictureFormValidator.enableValidation();
+
+document.querySelector('.profile__picture-overlay').addEventListener('click', () => {
+  profileEditPictureFormValidator.resetError();
+  profileEditPictureFormValidator.toggleButtonState();
+  editProfilePicturePopUp.open();
+})
