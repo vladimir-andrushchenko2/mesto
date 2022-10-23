@@ -56,7 +56,7 @@ const handleOpenPictureInPopUp = (link, name) => {
 }
 
 // *** Логика создания карточки
-const makeCardGeneratorCard = (clientId) => (cardData) =>
+const makeCardGenerator = (clientId) => (cardData) =>
   new Card({ ...cardData, clientId }, galleryConfig, handleOpenPictureInPopUp, onDelete, onLike, onRemoveLike).generateCard();
 
 // сюда я сохраню функцию для генерации карт после пoлучения _id клиента от сервера
@@ -78,7 +78,7 @@ api.getUserInfo()
   .then(({ name, about, avatar, _id }) => {
     userInfo.setUserInfo({ name, description: about, avatarLink: avatar });
     // определяю функцию генерации карт здесь поскльку для рендеринга карт нужнен айди пользователя
-    generateCard = makeCardGeneratorCard(_id);
+    generateCard = makeCardGenerator(_id);
 
     return api.getInitialCards();
   })
