@@ -5,11 +5,16 @@ class Api {
   }
 
   _makeRequest(path, method = 'GET', body) {
-    return fetch(`${this._baseUrl}${path}`, {
+    const config = {
       headers: this._headers,
-      method,
-      body: JSON.stringify(body)
-    })
+      method
+    };
+
+    if (body) {
+      config.body = JSON.stringify(body);
+    }
+
+    return fetch(`${this._baseUrl}${path}`, config)
       .then(res => {
         if (res.ok) {
           return res.json();
