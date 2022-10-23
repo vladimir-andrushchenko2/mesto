@@ -1,6 +1,4 @@
 import '../pages/index.css';
-import Card from './components/Card.js'
-import PopupWithForm from './components/PopupWithForm.js';
 import {
   galleryAddForm,
   profileEditForm,
@@ -13,8 +11,10 @@ import {
   inputSubtitle,
   editPictureForm
 } from './constants.js';
+import Card from './components/Card.js'
 import Section from './components/Section.js';
 import UserInfo from './components/UserInfo.js';
+import PopupWithForm from './components/PopupWithForm.js';
 import PopupWithImage from './components/PopupWithImage';
 import FormValidator from './components/FormValidator.js';
 import { api } from './components/Api.js';
