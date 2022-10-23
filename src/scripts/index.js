@@ -74,57 +74,43 @@ const makeCardGenerator = (clientId) => (cardData) =>
 // сюда я сохраню функцию для генерации карт после пoлучения _id клиента от сервера
 let generateCard;
 
-// при определении понадобится функция generateCard поэтому определяю после оплучения _id клиента который нужен для makeCardGenerator
-let galleryAddPopUp;
-
-const gallery = new Section({ data: [], renderer: () => { } }, '.gallery__items');
+const gallery = new Section(item => gallery.addItem(generateCard(item)), '.gallery__items');
 
 const addPostFormValidator = new FormValidator(galleryAddForm, validationConfig);
 addPostFormValidator.enableValidation()
 
-// profile pop-up
+// *** попап добавления карты
+const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
+  ({ name, source: link }) => {
+    const button = galleryAddForm.querySelector('.pop-up__save-button');
+    button.value = 'Сохранение...';
+
+    api.postCard(name, link)
+      .then((data) => gallery.addItem(generateCard(data)))
+      .catch(err => console.error(err))
+      .finally(() => {
+        button.value = 'Сохранить';
+        galleryAddPopUp.close();
+      });
+  }
+);
+
+galleryAddPopUp.setEventListeners();
+
+document.querySelector('.profile__add-button').addEventListener('click', () => {
+  addPostFormValidator.resetError();
+  addPostFormValidator.toggleButtonState();
+  galleryAddPopUp.open()
+});
+
 const userInfo = new UserInfo(titleSelector, subtitleSelector, profilePictureSelector);
 
-// сначала получаю данные о клиенте а потом создаю карточки для определения какие карты можно удалять а какие нет
-api.getUserInfo()
-  .then(({ name, about, avatar, _id }) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([{ name, about, avatar, _id }, initialCards]) => {
     userInfo.setUserInfo({ name, description: about, avatarLink: avatar });
     // определяю функцию генерации карт здесь поскльку для рендеринга карт нужнен айди пользователя
     generateCard = makeCardGenerator(_id);
-
-    return api.getInitialCards();
-  })
-  .then(initialCards => {
-    // теперь когда generateCard готов можно заполнять секцию, это нужно для того чтобы у карточек созданных не клиентом не отображалась кнопка удаления
-    new Section({
-      data: initialCards,
-      renderer: item => {
-        gallery.addItem(generateCard(item));
-      }
-    }, '.gallery__items').renderItems();
-
-    galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
-      ({ name, source: link }) => {
-        const button = galleryAddForm.querySelector('.pop-up__save-button');
-        button.value = 'Сохранинение...';
-
-        api.postCard(name, link)
-          .then((data) => gallery.addItem(generateCard(data)))
-          .catch(err => console.error(err))
-          .finally(() => {
-            button.value = 'Сохранить';
-            galleryAddPopUp.close();
-          });
-      }
-    );
-
-    galleryAddPopUp.setEventListeners();
-
-    document.querySelector('.profile__add-button').addEventListener('click', () => {
-      addPostFormValidator.resetError();
-      addPostFormValidator.toggleButtonState();
-      galleryAddPopUp.open()
-    });
+    gallery.renderItems(initialCards);
   })
   .catch(err => { console.error(err); localStorage.setItem('err', err) });
 
