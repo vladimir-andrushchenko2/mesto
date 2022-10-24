@@ -94,11 +94,13 @@ const galleryAddPopUp = new PopupWithForm('.pop-up_type_gallery-add',
     renderLoading(button, true);
 
     api.postCard(name, link)
-      .then((data) => gallery.addItem(generateCard(data)))
+      .then((data) => {
+        gallery.addItem(generateCard(data));
+        galleryAddPopUp.close();
+      })
       .catch(err => console.error(err))
       .finally(() => {
         renderLoading(button, false);
-        galleryAddPopUp.close();
       });
   }
 );
@@ -129,11 +131,13 @@ const profilePopUp = new PopupWithForm('.pop-up_type_profile',
     renderLoading(button, true)
 
     api.patchUserInfo(title, subtitle)
-      .then(({ name, about }) => userInfo.setUserInfo({ name, description: about }))
+      .then(({ name, about }) => {
+        userInfo.setUserInfo({ name, description: about });
+        profilePopUp.close();
+      })
       .catch(err => console.error(err))
       .finally(() => {
         renderLoading(button, false)
-        profilePopUp.close();
       });
   }
 );
@@ -162,13 +166,14 @@ const editProfilePicturePopUp = new PopupWithForm('.pop-up_type_edit-profile-pic
     const button = editPictureForm.querySelector('.pop-up__save-button');
     renderLoading(button, true);
 
-    api.patchUserAvatar(source).then(data => {
-      userInfo.setUserInfo({ avatarLink: data.avatar })
-    })
+    api.patchUserAvatar(source)
+      .then(data => {
+        userInfo.setUserInfo({ avatarLink: data.avatar });
+        editProfilePicturePopUp.close();
+      })
       .catch(err => console.error(err))
       .finally(() => {
         renderLoading(button, false);
-        editProfilePicturePopUp.close();
       });
   })
 
